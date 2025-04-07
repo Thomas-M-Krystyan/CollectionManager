@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
     <UserSecretsId>aspnet-CollectionManager-e2641657-190a-44e7-82eb-37f275644306</UserSecretsId>
+
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
@@ -27,6 +29,10 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="TypeScript\home.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@ using CollectionManager.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace CollectionManager
+namespace CollectionManager.WebApp
 {
     public class Program
     {
@@ -29,7 +29,6 @@ namespace CollectionManager
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
