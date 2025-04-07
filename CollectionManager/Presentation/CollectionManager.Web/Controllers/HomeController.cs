@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace CollectionManager.WebApp.Controllers.v1
+namespace CollectionManager.Web.Controllers
 {
-    public class HomeController : Controller
+    public sealed class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
