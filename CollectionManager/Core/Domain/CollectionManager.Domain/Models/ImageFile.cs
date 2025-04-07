@@ -16,9 +16,7 @@ namespace CollectionManager.Domain.Models
             Id = 0,
             Name = string.Empty,
             Extension = GraphicFileExtensions.Jpg,
-            Bytes = [],
-            Size = 0,
-            CreatedAt = DateTime.MinValue
+            Bytes = []
         };
 
         /// <summary>
