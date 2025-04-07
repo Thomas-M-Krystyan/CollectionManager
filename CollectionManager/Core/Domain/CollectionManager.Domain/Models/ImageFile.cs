@@ -20,5 +20,12 @@ namespace CollectionManager.Domain.Models
             Size = 0,
             CreatedAt = DateTime.MinValue
         };
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageFile"/> class.
+        /// </summary>
+        public ImageFile() : base()
+        {
+        }
     }
 }

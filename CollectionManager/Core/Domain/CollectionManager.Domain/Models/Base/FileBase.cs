@@ -27,16 +27,6 @@
         public required byte[] Bytes { get; set; }
 
         /// <summary>
-        /// The size of the file.
-        /// </summary>
-        public required decimal Size { get; set; }
-
-        /// <summary>
-        /// The creation date of the file.
-        /// </summary>
-        public required DateTime CreatedAt { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="FileBase{TExtension}"/> class.
         /// </summary>
         protected FileBase() { }
