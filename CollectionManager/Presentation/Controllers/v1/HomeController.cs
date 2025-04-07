@@ -8,9 +8,10 @@ namespace CollectionManager.WebApp.Controllers.v1
 
         public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
+            this._logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
