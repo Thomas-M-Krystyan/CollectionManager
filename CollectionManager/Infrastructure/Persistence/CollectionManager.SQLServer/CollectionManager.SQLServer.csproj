@@ -20,4 +20,19 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- Resources.resx -->
+  <ItemGroup>
+    <Compile Update="Properties\SQLServerResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SQLServerResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\SQLServerResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SQLServerResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
