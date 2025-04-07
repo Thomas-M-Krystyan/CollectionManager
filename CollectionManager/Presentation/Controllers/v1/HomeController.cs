@@ -2,7 +2,7 @@ using System.Diagnostics;
 using CollectionManager.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CollectionManager.Controllers
+namespace CollectionManager.WebApp.Controllers.v1
 {
     public class HomeController : Controller
     {
