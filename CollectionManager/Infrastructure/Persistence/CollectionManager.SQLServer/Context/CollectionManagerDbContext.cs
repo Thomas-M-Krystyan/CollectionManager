@@ -1,4 +1,5 @@
-﻿using CollectionManager.SQLServer.Properties;
+﻿using CollectionManager.SQLServer.Entities;
+using CollectionManager.SQLServer.Properties;
 using CollectionManager.SQLServer.Results;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -8,12 +9,16 @@ namespace CollectionManager.SQLServer.Context
     /// <summary>
     /// Initializes a new instance of the <see cref="CollectionManagerDbContext"/> class.
     /// </summary>
-    public sealed class CollectionManagerDbContext(
+    public class CollectionManagerDbContext(
         DbContextOptions<CollectionManagerDbContext> options,
         ILogger<CollectionManagerDbContext> logger)
         : DbContext(options)
     {
         private readonly ILogger<CollectionManagerDbContext> _logger = logger;
+
+        #region Tables
+        public virtual DbSet<ImageEntity> Images { get; set; }
+        #endregion
 
         #region Operations
         /// <inheritdoc cref="DbContext.SaveChangesAsync(CancellationToken)"/>
