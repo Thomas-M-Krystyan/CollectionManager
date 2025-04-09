@@ -3,7 +3,7 @@
     /// <summary>
     /// The file.
     /// </summary>
-    public record FileBase<TExtension>
+    public abstract record FileBase<TExtension>
         where TExtension : Enum
     {
         /// <summary>

@@ -1,4 +1,6 @@
-﻿namespace CollectionManager.Domain.Models.Base
+﻿using CollectionManager.Domain.Enums;
+
+namespace CollectionManager.Domain.Models.Base
 {
     /// <summary>
     /// An item that can be collected.
@@ -8,30 +10,35 @@
         /// <summary>
         /// The unique identifier of the item.
         /// </summary>
-        public required ulong Id { get; set; }
+        public required ulong Id { get; init; }
 
         /// <summary>
         /// The name of the item.
         /// </summary>
-        public required string Name { get; set; }
+        public required string Name { get; init; }
+
+        /// <summary>
+        /// The category of the item.
+        /// </summary>
+        public required ItemCategories Category { get; init; }
 
         /// <summary>
         /// The ownership status of the item (whether it was already collected or not).
         /// </summary>
-        public required bool IsOwned { get; set; }
+        public required bool IsOwned { get; init; }
+
+        /// <summary>
+        /// The image representing the item.
+        /// </summary>
+        public required ImageFile Image { get; init; }
 
         // ---------------------------------------
         // Optional attributes of collectible item
         // ---------------------------------------
 
         /// <summary>
-        /// The image representing the item.
-        /// </summary>
-        public ImageFile Image { get; set; } = ImageFile.Empty;
-
-        /// <summary>
         /// The notes of the item.
         /// </summary>
-        public string Notes { get; set; } = string.Empty;
+        public string Notes { get; init; } = string.Empty;
     }
 }
