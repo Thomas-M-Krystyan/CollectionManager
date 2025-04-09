@@ -20,11 +20,6 @@
     </PackageReference>
   </ItemGroup>
 
-  <!-- Project references -->
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Domain\CollectionManager.Domain\CollectionManager.Domain.csproj" />
-  </ItemGroup>
-
   <!-- Resources.resx -->
   <ItemGroup>
     <Compile Update="Properties\SQLServerResources.Designer.cs">
