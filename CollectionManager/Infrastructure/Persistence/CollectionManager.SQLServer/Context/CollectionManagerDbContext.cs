@@ -17,6 +17,8 @@ namespace CollectionManager.SQLServer.Context
         private readonly ILogger<CollectionManagerDbContext> _logger = logger;
 
         #region Tables
+        public virtual DbSet<ItemEntity> Items { get; set; }
+
         public virtual DbSet<ImageEntity> Images { get; set; }
         #endregion
 
