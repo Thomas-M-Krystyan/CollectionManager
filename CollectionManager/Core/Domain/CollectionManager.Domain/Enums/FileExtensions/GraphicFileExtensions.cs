@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CollectionManager.Domain.Enums
+namespace CollectionManager.Domain.Enums.FileExtensions
 {
     /// <summary>
-    /// A list of supported graphic file extensions.
+    /// Supported graphic file extensions.
     /// </summary>
     public enum GraphicFileExtensions
     {
