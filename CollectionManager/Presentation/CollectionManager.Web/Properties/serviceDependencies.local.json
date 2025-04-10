@@ -3,7 +3,7 @@
     "mssql1": {
       "secretStore": "LocalSecretsFile",
       "type": "mssql.local",
-      "connectionId": "ConnectionStrings:CollectionManagerLocalDb",
+      "connectionId": "ConnectionStrings:DefaultConnection",
       "dynamicId": null
     }
   }
