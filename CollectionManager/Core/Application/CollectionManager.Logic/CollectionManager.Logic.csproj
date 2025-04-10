@@ -10,6 +10,22 @@
   <!-- Projects -->
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Persistence\CollectionManager.SQLServer\CollectionManager.SQLServer.csproj" />
+    <ProjectReference Include="..\..\Domain\CollectionManager.Domain\CollectionManager.Domain.csproj" />
+  </ItemGroup>
+
+  <!-- Resources.resx -->
+  <ItemGroup>
+    <Compile Update="Properties\LogicResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LogicResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\LogicResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogicResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
