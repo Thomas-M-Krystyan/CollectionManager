@@ -1,3 +1,6 @@
+using CollectionManager.SQLServer.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace CollectionManager.Web
 {
     public static class Program
@@ -17,8 +20,23 @@ namespace CollectionManager.Web
         #region Dependency Injection (DI)
         private static WebApplicationBuilder RegisterNetServices(this WebApplicationBuilder builder)
         {
+            #region Entity Framework | SQL Server
+            // Load secrets.json
+            builder.Configuration.AddUserSecrets("b50d7c49-0d78-45fb-bae6-5a3f782d964b");
+
+            // Retrieve connection string
+            string connectionString = builder.Configuration.GetConnectionString("CollectionLocalDb")
+                ?? throw new ArgumentException($"Specified database connection string cannot be found");
+
+            // Register SQL Server database
+            builder.Services.AddDbContext<CollectionManagerDbContext>(options
+                => options.UseSqlServer(connectionString));
+            #endregion
+
+            #region ASP.NET MVC
             // Commonly used MVC services
-            _ = builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews();
+            #endregion
 
             return builder;
         }
@@ -34,17 +52,17 @@ namespace CollectionManager.Web
         {
             if (!app.Environment.IsDevelopment())
             {
-                _ = app.UseHsts();  // Default: 30 days
+                app.UseHsts();  // Default: 30 days
             }
 
-            _ = app.UseHttpsRedirection();
-            _ = app.UseRouting();
+            app.UseHttpsRedirection();
+            app.UseRouting();
 
-            _ = app.UseAuthorization();
+            app.UseAuthorization();
 
-            _ = app.MapStaticAssets();
-            _ = app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}")
-                   .WithStaticAssets();
+            app.MapStaticAssets();
+            app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}")
+               .WithStaticAssets();
 
             return app;
         }

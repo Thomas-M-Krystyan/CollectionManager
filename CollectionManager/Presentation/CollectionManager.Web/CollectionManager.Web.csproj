@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <!-- Project configuration -->
   <PropertyGroup>
@@ -14,9 +14,20 @@
 
   <!-- NuGet packages -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
   </ItemGroup>
 
+  <!-- Projects -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Persistence\CollectionManager.SQLServer\CollectionManager.SQLServer.csproj" />
+  </ItemGroup>
+
+  <!-- Folders -->
   <ItemGroup>
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
