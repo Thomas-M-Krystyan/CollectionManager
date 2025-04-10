@@ -37,12 +37,6 @@
         /// </summary>
         internal static DatabaseResult Failure(string message)
             => new(false, 0, message);
-
-        /// <summary>
-        /// The negative outcome of the database operation.
-        /// </summary>
-        public static DatabaseResult Failure(Exception exception)
-            => new(false, 0, exception.InnerException?.Message ?? exception.Message);
         #endregion
     }
 }

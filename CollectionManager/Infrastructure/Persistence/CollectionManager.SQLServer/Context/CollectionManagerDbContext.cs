@@ -44,11 +44,9 @@ namespace CollectionManager.SQLServer.Context
             }
             catch (Exception exception)
             {
-                string errorMessage = exception.InnerException?.Message ?? exception.Message;
+                this._logger.LogError("CollectionManagerDbContext | SaveChangesAsync | Error | {message}", exception.Message);
 
-                this._logger.LogError("CollectionManagerDbContext | SaveChangesAsync | Error | {message}", errorMessage);
-
-                return DatabaseResult.Failure(errorMessage);
+                return DatabaseResult.Failure(exception.Message);
             }
         }
         #endregion
