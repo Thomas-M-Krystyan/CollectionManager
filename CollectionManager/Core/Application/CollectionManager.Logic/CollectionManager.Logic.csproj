@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <!-- Projects -->
+  <!-- Project references -->
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Persistence\CollectionManager.SQLServer\CollectionManager.SQLServer.csproj" />
     <ProjectReference Include="..\..\Domain\CollectionManager.Domain\CollectionManager.Domain.csproj" />
