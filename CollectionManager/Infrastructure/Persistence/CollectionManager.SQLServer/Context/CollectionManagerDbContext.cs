@@ -1,4 +1,5 @@
-﻿using CollectionManager.SQLServer.Entities;
+﻿using CollectionManager.SQLServer.Context.Interfaces;
+using CollectionManager.SQLServer.Entities;
 using CollectionManager.SQLServer.Properties;
 using CollectionManager.SQLServer.Results;
 using Microsoft.EntityFrameworkCore;
@@ -6,15 +7,11 @@ using Microsoft.Extensions.Logging;
 
 namespace CollectionManager.SQLServer.Context
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="CollectionManagerDbContext"/> class.
-    /// </summary>
-    public class CollectionManagerDbContext(
-        DbContextOptions<CollectionManagerDbContext> options,
-        ILogger<CollectionManagerDbContext> logger)
-        : DbContext(options)
+    /// <inheritdoc cref="ICollectionManagerDbContext"/>
+    /// <seealso cref="DbContext"/>
+    public class CollectionManagerDbContext : DbContext, ICollectionManagerDbContext
     {
-        private readonly ILogger<CollectionManagerDbContext> _logger = logger;
+        private readonly ILogger<CollectionManagerDbContext> _logger;
 
         #region Tables
         public virtual DbSet<ItemEntity> Items { get; set; }
@@ -22,17 +19,28 @@ namespace CollectionManager.SQLServer.Context
         public virtual DbSet<ImageEntity> Images { get; set; }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CollectionManagerDbContext"/> class.
+        /// </summary>
+        public CollectionManagerDbContext(
+            DbContextOptions<CollectionManagerDbContext> options,
+            ILogger<CollectionManagerDbContext> logger)
+            : base(options)
+        {
+            this._logger = logger;
+        }
+
         #region Operations
         /// <inheritdoc cref="DbContext.SaveChangesAsync(CancellationToken)"/>
-        public async new Task<DbOperationResult> SaveChangesAsync(CancellationToken cancellationToken)
+        async Task<DatabaseResult> ICollectionManagerDbContext.SaveChangesAsync(CancellationToken cancellationToken)
         {
             try
             {
                 int changesCount = await base.SaveChangesAsync(cancellationToken);
 
                 return changesCount > 0
-                    ? DbOperationResult.Success(changesCount, string.Format(SQLServerResources.DbOperationSuccessful, changesCount))
-                    : DbOperationResult.Failure(SQLServerResources.DbOperationUnsuccessful);
+                    ? DatabaseResult.Success(changesCount, string.Format(SQLServerResources.DbOperationSuccessful, changesCount))
+                    : DatabaseResult.Failure(SQLServerResources.DbOperationUnsuccessful);
             }
             catch (Exception exception)
             {
@@ -40,7 +48,7 @@ namespace CollectionManager.SQLServer.Context
 
                 this._logger.LogError("CollectionManagerDbContext | SaveChangesAsync | Error | {message}", errorMessage);
 
-                return DbOperationResult.Failure(errorMessage);
+                return DatabaseResult.Failure(errorMessage);
             }
         }
         #endregion
