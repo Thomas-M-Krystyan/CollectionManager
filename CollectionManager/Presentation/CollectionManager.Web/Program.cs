@@ -30,7 +30,8 @@ namespace CollectionManager.Web
 
             // Register SQL Server database
             builder.Services.AddDbContext<CollectionManagerDbContext>(options
-                => options.UseSqlServer(connectionString));
+                => options.UseSqlServer(connectionString, optionsBuilder
+                => optionsBuilder.MigrationsAssembly("CollectionManager.SQLServer")));
             #endregion
 
             #region ASP.NET MVC
