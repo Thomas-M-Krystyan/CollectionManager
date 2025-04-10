@@ -25,7 +25,7 @@ namespace CollectionManager.Web
             builder.Configuration.AddUserSecrets("b50d7c49-0d78-45fb-bae6-5a3f782d964b");
 
             // Retrieve connection string
-            string connectionString = builder.Configuration.GetConnectionString("CollectionLocalDb")
+            string connectionString = builder.Configuration.GetConnectionString("CollectionManagerLocalDb")
                 ?? throw new ArgumentException($"Specified database connection string cannot be found");
 
             // Register SQL Server database
