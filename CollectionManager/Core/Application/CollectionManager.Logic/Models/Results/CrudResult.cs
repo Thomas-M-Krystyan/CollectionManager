@@ -3,22 +3,22 @@
     /// <summary>
     /// Represents status of a CRUD operation.
     /// </summary>
-    public readonly struct CrudResult
+    public readonly struct CrudResult(bool isSuccess, string message)
     {
-        public bool IsSuccess { get; }
-
-        public bool IsFailure => !this.IsSuccess;
-
-        public string Message { get; }
+        /// <summary>
+        /// Indicator whether the CRUD operation was successful.
+        /// </summary>
+        public bool IsSuccess { get; } = isSuccess;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CrudResult"/> struct.
+        /// Indicator whether the CRUD operation was unsuccessful.
         /// </summary>
-        private CrudResult(bool isSuccess, string message)
-        {
-            this.IsSuccess = isSuccess;
-            this.Message = message;
-        }
+        public bool IsFailure => !this.IsSuccess;
+
+        /// <summary>
+        /// The status of the CRUD operation.
+        /// </summary>
+        public string Message { get; } = message;
 
         #region Predefined results
         /// <summary>
