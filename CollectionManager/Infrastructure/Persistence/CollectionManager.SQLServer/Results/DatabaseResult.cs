@@ -3,7 +3,7 @@
     /// <summary>
     /// The standardized database operation result.
     /// </summary>
-    public readonly struct DbOperationResult(bool isSuccess, int changesCount, string message)
+    public readonly struct DatabaseResult(bool isSuccess, int changesCount, string message)
     {
         /// <summary>
         /// Indicator whether the database operation was successful.
@@ -23,11 +23,11 @@
         /// <summary>
         /// The operation was successful.
         /// </summary>
-        internal static DbOperationResult Success(int changesCount, string message) => new(true, changesCount, message);
+        internal static DatabaseResult Success(int changesCount, string message) => new(true, changesCount, message);
 
         /// <summary>
         /// The operation was unsuccessful.
         /// </summary>
-        internal static DbOperationResult Failure(string message) => new(false, 0, message);
+        internal static DatabaseResult Failure(string message) => new(false, 0, message);
     }
 }
