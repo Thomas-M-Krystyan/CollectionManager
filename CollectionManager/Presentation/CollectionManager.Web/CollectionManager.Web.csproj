@@ -24,7 +24,7 @@
 
   <!-- Projects -->
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Persistence\CollectionManager.SQLServer\CollectionManager.SQLServer.csproj" />
+    <ProjectReference Include="..\..\Core\Application\CollectionManager.Logic\CollectionManager.Logic.csproj" />
   </ItemGroup>
 
   <!-- Folders -->

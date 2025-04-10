@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project configuration -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Projects -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Persistence\CollectionManager.SQLServer\CollectionManager.SQLServer.csproj" />
+  </ItemGroup>
+
+</Project>
