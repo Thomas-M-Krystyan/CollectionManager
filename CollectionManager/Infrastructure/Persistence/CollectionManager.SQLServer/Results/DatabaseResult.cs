@@ -52,7 +52,7 @@ namespace CollectionManager.SQLServer.Results
     /// <summary>
     /// <inheritdoc cref="IDatabaseResult"/>
     /// <para>
-    /// Containing a resulting entity <typeparamref name="TEntity"/>.
+    ///   Containing a resulting entity <typeparamref name="TEntity"/>.
     /// </para>
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>

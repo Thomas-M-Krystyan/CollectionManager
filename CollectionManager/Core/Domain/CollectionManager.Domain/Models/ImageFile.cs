@@ -5,7 +5,9 @@ namespace CollectionManager.Domain.Models
 {
     /// <summary>
     /// <inheritdoc cref="FileBase{TExtension}"/>
-    /// It is representing graphic content.
+    /// <para>
+    ///   Represents a graphic content.
+    /// </para>
     /// </summary>
     public record ImageFile : FileBase<Graphics>
     {
