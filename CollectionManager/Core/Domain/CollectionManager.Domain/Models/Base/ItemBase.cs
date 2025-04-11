@@ -1,4 +1,6 @@
-﻿namespace CollectionManager.Domain.Models.Base
+﻿using CollectionManager.Domain.Enums.FileExtensions;
+
+namespace CollectionManager.Domain.Models.Base
 {
     /// <summary>
     /// An item that can be collected.
@@ -23,7 +25,7 @@
         /// <summary>
         /// The image representing the item.
         /// </summary>
-        public required ImageFile Image { get; init; }
+        public required FileBase<Graphics> Image { get; init; }
 
         // ---------------------------------------
         // Optional attributes of collectible item
