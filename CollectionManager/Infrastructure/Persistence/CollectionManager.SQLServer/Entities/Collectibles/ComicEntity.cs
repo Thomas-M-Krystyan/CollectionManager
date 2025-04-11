@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CollectionManager.SQLServer.Context;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CollectionManager.SQLServer.Entities.Collectibles
 {
     [PrimaryKey(nameof(Id))]
-    [Table("Items")]
+    [Table(nameof(CollectionManagerDbContext.Comics))]
     public sealed class ComicEntity
     {
         [Key]

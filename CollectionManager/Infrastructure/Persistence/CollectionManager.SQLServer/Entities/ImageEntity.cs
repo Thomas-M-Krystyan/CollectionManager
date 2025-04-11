@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CollectionManager.SQLServer.Context;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CollectionManager.SQLServer.Entities
 {
     [PrimaryKey(nameof(Id))]
-    [Table("Images")]
+    [Table(nameof(CollectionManagerDbContext.Images))]
     public sealed record ImageEntity
     {
         [Key]
