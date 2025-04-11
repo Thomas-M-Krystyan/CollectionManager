@@ -9,45 +9,76 @@ using Moq;
 namespace CollectionManager.Logic.Tests.Unit.Managers
 {
     [TestFixture]
-    public sealed class ImagesCrudManagerTests
+    public sealed class CrudManagerTests
     {
         private readonly Mock<ICollectionManagerDbContext> _dbContextMock = new(MockBehavior.Strict);
 
+        #region Test data
+        private const ulong TestId = 1;
+
+        private readonly ImageEntity _imageEntity = new()
+        {
+            Id = TestId,
+            Name = "Test image",
+            Extension = (byte)GraphicFileExtensions.Jpg,
+            Bytes = []
+        };
+        #endregion
+
+        #region Setup
         [TearDown]
         public void TearDown() => this._dbContextMock.Reset();
+        #endregion
 
         #region RemoveAsync()
         [Test]
-        public async Task RemoveAsync_ValidId_Found_Removed_Saved_ReturnsSuccess()
+        public async Task RemoveAsync_Found_Removed_Saved_ReturnsSuccess()
         {
             // Arrange
-            const ulong testId = 1;
-
-            ImageEntity imageEntity = new()
-            {
-                Id = testId,
-                Name = "Test image",
-                Extension = (byte)GraphicFileExtensions.Jpg,
-                Bytes = []
-            };
-
-            MockFind_Success(imageEntity);
-            MockRemove_Success(imageEntity);
+            MockFind_Success(_imageEntity);
+            MockRemove_Success(_imageEntity);
             MockSave_Success();
 
             CrudManager crudManager = new(this._dbContextMock.Object);
 
             // Act
-            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(testId, CancellationToken.None);
+            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
 
             // Assert
             Assert.Multiple(() =>
             {
                 Assert.That(result.IsSuccess, Is.True);
-                Assert.That(result.Message, Is.EqualTo($"The operation succeeded: The object with ID: '{testId}' was removed successfully."));
+                Assert.That(result.Message, Is.EqualTo($"The operation succeeded: The object with ID: '{TestId}' was removed successfully."));
 
                 MockFind_Verify();
-                MockRemove_Verify(imageEntity);
+                MockRemove_Verify(_imageEntity);
+                MockSave_Verify();
+
+                this._dbContextMock.VerifyNoOtherCalls();
+            });
+        }
+
+        [Test]
+        public async Task RemoveAsync_Found_Removed_NotSaved_ReturnsFailure()
+        {
+            // Arrange
+            MockFind_Success(_imageEntity);
+            MockRemove_Success(_imageEntity);
+            MockSave_Failure();
+
+            CrudManager crudManager = new(this._dbContextMock.Object);
+
+            // Act
+            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Message, Is.EqualTo("The operation failed: The object with ID: '1' could not be removed. Reason: The saving failed. Nothing was changed."));
+
+                MockFind_Verify();
+                MockRemove_Verify(_imageEntity);
                 MockSave_Verify();
 
                 this._dbContextMock.VerifyNoOtherCalls();
@@ -77,6 +108,15 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
         private void MockSave_Success()
         {
             DatabaseResult saveResult = new(true, 1, "The saving succeeded. Database was changed.");
+
+            this._dbContextMock
+                .Setup(mock => mock.SaveChangesAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(saveResult);
+        }
+
+        private void MockSave_Failure()
+        {
+            DatabaseResult saveResult = new(false, 0, "The saving failed. Nothing was changed.");
 
             this._dbContextMock
                 .Setup(mock => mock.SaveChangesAsync(It.IsAny<CancellationToken>()))
