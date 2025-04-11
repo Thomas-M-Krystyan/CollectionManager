@@ -6,6 +6,7 @@ using CollectionManager.SQLServer.Results;
 
 namespace CollectionManager.Logic.Managers
 {
+    /// <inheritdoc cref="ICrudManager"/>
     public sealed class CrudManager : ICrudManager
     {
         private readonly ICollectionManagerDbContext _dbContext;
@@ -18,6 +19,7 @@ namespace CollectionManager.Logic.Managers
             this._dbContext = dbContext;
         }
 
+        /// <inheritdoc cref="ICrudManager.CreateAsync{TEntity}(TEntity, CancellationToken)"/>
         public async Task<CrudResult> CreateAsync<TEntity>(TEntity entity, CancellationToken cancellationToken)
             where TEntity : class
         {
@@ -59,6 +61,7 @@ namespace CollectionManager.Logic.Managers
             }
         }
 
+        /// <inheritdoc cref="ICrudManager.UpdateAsync{TEntity}(ulong, TEntity, CancellationToken)"/>
         public async Task<CrudResult> UpdateAsync<TEntity>(ulong id, TEntity entity, CancellationToken cancellationToken)
             where TEntity : class
         {
