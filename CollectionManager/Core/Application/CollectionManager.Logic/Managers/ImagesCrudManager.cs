@@ -22,7 +22,7 @@ namespace CollectionManager.Logic.Managers
             this._dbContext = dbContext;
         }
 
-        public Task<CrudResult> CreateAsync(FileDto<GraphicFileExtensions> dto, CancellationToken cancellationToken)
+        public async Task<CrudResult> CreateAsync(FileDto<GraphicFileExtensions> dto, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -55,7 +55,7 @@ namespace CollectionManager.Logic.Managers
             }
         }
 
-        public Task<CrudResult> UpdateAsync(ulong id, FileDto<GraphicFileExtensions> dto, CancellationToken cancellationToken)
+        public async Task<CrudResult> UpdateAsync(ulong id, FileDto<GraphicFileExtensions> dto, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
