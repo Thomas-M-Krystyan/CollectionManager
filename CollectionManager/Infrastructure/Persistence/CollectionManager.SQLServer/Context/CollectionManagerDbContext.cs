@@ -3,7 +3,6 @@ using CollectionManager.SQLServer.Entities;
 using CollectionManager.SQLServer.Properties;
 using CollectionManager.SQLServer.Results;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace CollectionManager.SQLServer.Context
 {
@@ -11,8 +10,6 @@ namespace CollectionManager.SQLServer.Context
     /// <seealso cref="DbContext"/>
     public class CollectionManagerDbContext : DbContext, ICollectionManagerDbContext
     {
-        private readonly ILogger<CollectionManagerDbContext> _logger;
-
         #region Tables
         public virtual DbSet<ItemEntity> Items { get; set; }
 
@@ -23,11 +20,9 @@ namespace CollectionManager.SQLServer.Context
         /// Initializes a new instance of the <see cref="CollectionManagerDbContext"/> class.
         /// </summary>
         public CollectionManagerDbContext(
-            DbContextOptions<CollectionManagerDbContext> options,
-            ILogger<CollectionManagerDbContext> logger)
+            DbContextOptions<CollectionManagerDbContext> options)
             : base(options)
         {
-            this._logger = logger;
         }
 
         #region Operations
@@ -44,8 +39,6 @@ namespace CollectionManager.SQLServer.Context
             }
             catch (Exception exception)
             {
-                this._logger.LogError("CollectionManagerDbContext | SaveChangesAsync | Error | {message}", exception.Message);
-
                 return DatabaseResult.Failure(exception.Message);
             }
         }
