@@ -5,8 +5,11 @@ namespace CollectionManager.Domain.Enums.FileExtensions
     /// <summary>
     /// Supported graphic file extensions.
     /// </summary>
-    public enum GraphicFileExtensions
+    public enum Graphics
     {
+        [Display(Name = "bmp")]
+        Bmp,
+
         [Display(Name = "jpg")]
         Jpg,
 
@@ -14,9 +17,6 @@ namespace CollectionManager.Domain.Enums.FileExtensions
         Jpeg,
 
         [Display(Name = "png")]
-        Png,
-
-        [Display(Name = "bmp")]
-        Bmp
+        Png
     }
 }
