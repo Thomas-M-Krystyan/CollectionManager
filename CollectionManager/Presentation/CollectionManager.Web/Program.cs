@@ -1,4 +1,7 @@
+using CollectionManager.Logic.Managers;
+using CollectionManager.Logic.Managers.Interfaces;
 using CollectionManager.SQLServer.Context;
+using CollectionManager.SQLServer.Context.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CollectionManager.Web
@@ -29,7 +32,7 @@ namespace CollectionManager.Web
                 ?? throw new ArgumentException($"Specified database connection string cannot be found");
 
             // Register SQL Server database
-            builder.Services.AddDbContext<CollectionManagerDbContext>(options
+            builder.Services.AddDbContext<ICollectionManagerDbContext, CollectionManagerDbContext>(options
                 => options.UseSqlServer(connectionString, optionsBuilder
                 => optionsBuilder.MigrationsAssembly("CollectionManager.SQLServer")));
             #endregion
@@ -44,6 +47,8 @@ namespace CollectionManager.Web
 
         private static WebApplicationBuilder RegisterAppServices(this WebApplicationBuilder builder)
         {
+            builder.Services.AddSingleton<ICrudManager, CrudManager>();
+
             return builder;
         }
         #endregion
