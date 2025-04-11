@@ -79,7 +79,7 @@ namespace CollectionManager.Logic.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object with ID: &apos;.
+        ///   Looks up a localized string similar to The object with ID &apos;.
         /// </summary>
         internal static string ObjectId {
             get {

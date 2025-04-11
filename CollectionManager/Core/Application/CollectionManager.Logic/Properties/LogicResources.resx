@@ -126,7 +126,7 @@
     <comment>1. Status</comment>
   </data>
   <data name="ObjectId" xml:space="preserve">
-    <value>The object with ID: '</value>
+    <value>The object with ID '</value>
     <comment>2. Target</comment>
   </data>
   <data name="OperationRemove_Success" xml:space="preserve">

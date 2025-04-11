@@ -61,7 +61,7 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object with given ID does not exist..
+        ///   Looks up a localized string similar to The find operation failed. The object with given ID does not exist..
         /// </summary>
         internal static string OperationFind_Failure {
             get {
@@ -70,7 +70,7 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object with given ID was found..
+        ///   Looks up a localized string similar to The find operation succeeded. The object with given ID was found..
         /// </summary>
         internal static string OperationFind_Success {
             get {
@@ -79,7 +79,7 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object with given ID could not be removed..
+        ///   Looks up a localized string similar to The removing operation failed (constrains, state, concurrency, configuration)..
         /// </summary>
         internal static string OperationRemove_Failure {
             get {
@@ -88,7 +88,7 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object with given ID was removed..
+        ///   Looks up a localized string similar to The removing operation succeeded..
         /// </summary>
         internal static string OperationRemove_Success {
             get {
@@ -97,7 +97,7 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The saving failed. Nothing was changed..
+        ///   Looks up a localized string similar to The saving operation failed (constrains, concurrency, context, configuration). Nothing was changed..
         /// </summary>
         internal static string OperationSaveChanges_Failure {
             get {
@@ -106,7 +106,7 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The saving succeeded. Database was changed..
+        ///   Looks up a localized string similar to The saving operation succeeded. Database was changed..
         /// </summary>
         internal static string OperationSaveChanges_Success {
             get {
