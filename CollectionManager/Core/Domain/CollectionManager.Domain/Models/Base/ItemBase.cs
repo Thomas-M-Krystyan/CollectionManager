@@ -1,6 +1,4 @@
-﻿using CollectionManager.Domain.Enums;
-
-namespace CollectionManager.Domain.Models.Base
+﻿namespace CollectionManager.Domain.Models.Base
 {
     /// <summary>
     /// An item that can be collected.
@@ -16,11 +14,6 @@ namespace CollectionManager.Domain.Models.Base
         /// The name of the item.
         /// </summary>
         public required string Name { get; init; }
-
-        /// <summary>
-        /// The category of the item.
-        /// </summary>
-        public required ItemCategories Category { get; init; }
 
         /// <summary>
         /// The ownership status of the item (whether it was already collected or not).

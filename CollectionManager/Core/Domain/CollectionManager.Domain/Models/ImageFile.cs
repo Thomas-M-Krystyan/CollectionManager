@@ -7,7 +7,7 @@ namespace CollectionManager.Domain.Models
     /// <inheritdoc cref="FileBase{TExtension}"/>
     /// It is representing graphic content.
     /// </summary>
-    public record ImageFile : FileBase<GraphicFileExtensions>
+    public record ImageFile : FileBase<Graphics>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageFile"/> class.
