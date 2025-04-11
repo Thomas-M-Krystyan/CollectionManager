@@ -138,6 +138,33 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
                 this._dbContextMock.VerifyNoOtherCalls();
             });
         }
+
+        [Test]
+        public async Task RemoveAsync_ExceptionThrown_ReturnsFailure()
+        {
+            // Arrange
+            this._dbContextMock
+                .Setup(mock => mock.FindAsync<ImageEntity>(It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
+                .ThrowsAsync(new Exception("Test exception."));
+
+            CrudManager crudManager = new(this._dbContextMock.Object);
+
+            // Act
+            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Test exception."));
+
+                MockFind_Verify(1);
+                MockRemove_Verify(0, _imageEntity);
+                MockSave_Verify(0);
+
+                this._dbContextMock.VerifyNoOtherCalls();
+            });
+        }
         #endregion
 
         #region Mocks
