@@ -50,9 +50,9 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
                 Assert.That(result.IsSuccess, Is.True);
                 Assert.That(result.Message, Is.EqualTo($"The operation succeeded: The object with ID: '{TestId}' was removed successfully."));
 
-                MockFind_Verify();
-                MockRemove_Verify(_imageEntity);
-                MockSave_Verify();
+                MockFind_Verify(1);
+                MockRemove_Verify(_imageEntity, 1);
+                MockSave_Verify(1);
 
                 this._dbContextMock.VerifyNoOtherCalls();
             });
@@ -77,9 +77,9 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
                 Assert.That(result.IsSuccess, Is.False);
                 Assert.That(result.Message, Is.EqualTo("The operation failed: The object with ID: '1' could not be removed. Reason: The saving failed. Nothing was changed."));
 
-                MockFind_Verify();
-                MockRemove_Verify(_imageEntity);
-                MockSave_Verify();
+                MockFind_Verify(1);
+                MockRemove_Verify(_imageEntity, 1);
+                MockSave_Verify(1);
 
                 this._dbContextMock.VerifyNoOtherCalls();
             });
@@ -125,14 +125,14 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
         #endregion
 
         #region Verify
-        private void MockFind_Verify()
-            => this._dbContextMock.Verify(mock => mock.FindAsync<ImageEntity>(It.IsAny<ulong>(), It.IsAny<CancellationToken>()), Times.Once);
+        private void MockFind_Verify(int count)
+            => this._dbContextMock.Verify(mock => mock.FindAsync<ImageEntity>(It.IsAny<ulong>(), It.IsAny<CancellationToken>()), Times.Exactly(count));
 
-        private void MockRemove_Verify(ImageEntity imageEntity)
-            => this._dbContextMock.Verify(mock => mock.Remove(imageEntity), Times.Once);
+        private void MockRemove_Verify(ImageEntity imageEntity, int count)
+            => this._dbContextMock.Verify(mock => mock.Remove(imageEntity), Times.Exactly(count));
 
-        private void MockSave_Verify()
-            => this._dbContextMock.Verify(mock => mock.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+        private void MockSave_Verify(int count)
+            => this._dbContextMock.Verify(mock => mock.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Exactly(count));
         #endregion
     }
 }
