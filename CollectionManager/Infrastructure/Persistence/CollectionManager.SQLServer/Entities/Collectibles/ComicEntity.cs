@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CollectionManager.SQLServer.Entities
+namespace CollectionManager.SQLServer.Entities.Collectibles
 {
     [PrimaryKey(nameof(Id))]
     [Table("Items")]
-    public sealed class ItemEntity
+    public sealed class ComicEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,15 +20,23 @@ namespace CollectionManager.SQLServer.Entities
 
         [Required]
         [Column(Order = 2)]
-        public required byte Category { get; set; }
+        public required byte Genre { get; set; }
 
         [Required]
         [Column(Order = 3)]
+        public required byte Age { get; set; }
+
+        [Required]
+        [Column(Order = 4)]
+        public required DateOnly Published { get; set; }
+
+        [Required]
+        [Column(Order = 5)]
         public required bool IsOwned { get; set; }
 
         [Required]
         [MaxLength(500)]
-        [Column(Order = 4)]
+        [Column(Order = 6)]
         public required string Notes { get; set; }
 
         // ---------------------
@@ -36,12 +44,12 @@ namespace CollectionManager.SQLServer.Entities
         // ---------------------
 
         [Required]
-        [Column(Order = 5)]
+        [Column(Order = 7)]
         public required ulong ImageId { get; set; }
 
         [Required]
         [ForeignKey(nameof(ImageId))]
-        [Column(Order = 6)]
+        [Column(Order = 8)]
         public required ImageEntity Image { get; set; }
     }
 }
