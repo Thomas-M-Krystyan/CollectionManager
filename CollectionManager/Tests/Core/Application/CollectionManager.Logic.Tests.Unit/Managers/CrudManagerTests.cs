@@ -32,6 +32,33 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
 
         #region RemoveAsync()
         [Test]
+        public async Task RemoveAsync_NotFound_ReturnsFailure()
+        {
+            // Arrange
+            MockFind_Failure(_imageEntity);
+            MockRemove_Failure(_imageEntity);
+            MockSave_Failure();
+
+            CrudManager crudManager = new(this._dbContextMock.Object);
+
+            // Act
+            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Find failed."));
+
+                MockFind_Verify(1);
+                MockRemove_Verify(0, _imageEntity);
+                MockSave_Verify(0);
+
+                this._dbContextMock.VerifyNoOtherCalls();
+            });
+        }
+
+        [Test]
         public async Task RemoveAsync_Found_NotRemoved_ReturnsFailure()
         {
             // Arrange
@@ -117,6 +144,15 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
         private void MockFind_Success(ImageEntity imageEntity)
         {
             DatabaseResult<ImageEntity> findResult = new(true, 0, imageEntity, "Find succeeded.");
+
+            this._dbContextMock
+                .Setup(mock => mock.FindAsync<ImageEntity>(It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(findResult);
+        }
+
+        private void MockFind_Failure(ImageEntity imageEntity)
+        {
+            DatabaseResult<ImageEntity> findResult = new(false, 0, imageEntity, "Find failed.");
 
             this._dbContextMock
                 .Setup(mock => mock.FindAsync<ImageEntity>(It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
