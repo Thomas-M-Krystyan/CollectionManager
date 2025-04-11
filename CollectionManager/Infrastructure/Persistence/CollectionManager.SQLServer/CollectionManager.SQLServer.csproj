@@ -20,6 +20,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="CollectionManager.Logic.Tests.Unit" />
+  </ItemGroup>
+
   <!-- Resources.resx -->
   <ItemGroup>
     <Compile Update="Properties\SQLServerResources.Designer.cs">

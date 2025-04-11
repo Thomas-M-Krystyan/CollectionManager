@@ -61,20 +61,56 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The database operation was successful. Rows changed: {0}..
+        ///   Looks up a localized string similar to The object with given ID does not exist..
         /// </summary>
-        internal static string DbOperationSuccessful {
+        internal static string OperationFind_Failure {
             get {
-                return ResourceManager.GetString("DbOperationSuccessful", resourceCulture);
+                return ResourceManager.GetString("OperationFind_Failure", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The database operation was unsuccessful. No changes..
+        ///   Looks up a localized string similar to The object with given ID was found..
         /// </summary>
-        internal static string DbOperationUnsuccessful {
+        internal static string OperationFind_Success {
             get {
-                return ResourceManager.GetString("DbOperationUnsuccessful", resourceCulture);
+                return ResourceManager.GetString("OperationFind_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The object with given ID could not be removed..
+        /// </summary>
+        internal static string OperationRemove_Failure {
+            get {
+                return ResourceManager.GetString("OperationRemove_Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The object with given ID was removed..
+        /// </summary>
+        internal static string OperationRemove_Success {
+            get {
+                return ResourceManager.GetString("OperationRemove_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The saving failed. Nothing was changed..
+        /// </summary>
+        internal static string OperationSaveChanges_Failure {
+            get {
+                return ResourceManager.GetString("OperationSaveChanges_Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The saving succeeded. Database was changed..
+        /// </summary>
+        internal static string OperationSaveChanges_Success {
+            get {
+                return ResourceManager.GetString("OperationSaveChanges_Success", resourceCulture);
             }
         }
     }

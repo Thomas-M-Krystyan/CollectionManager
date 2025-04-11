@@ -117,11 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DbOperationSuccessful" xml:space="preserve">
-    <value>The database operation was successful. Rows changed: {0}.</value>
-    <comment>{0} = The number of affected rows</comment>
+  <data name="OperationSaveChanges_Success" xml:space="preserve">
+    <value>The saving succeeded. Database was changed.</value>
+    <comment>SaveChanges</comment>
   </data>
-  <data name="DbOperationUnsuccessful" xml:space="preserve">
-    <value>The database operation was unsuccessful. No changes.</value>
+  <data name="OperationSaveChanges_Failure" xml:space="preserve">
+    <value>The saving failed. Nothing was changed.</value>
+    <comment>SaveChanges</comment>
+  </data>
+  <data name="OperationFind_Failure" xml:space="preserve">
+    <value>The object with given ID does not exist.</value>
+    <comment>Find</comment>
+  </data>
+  <data name="OperationFind_Success" xml:space="preserve">
+    <value>The object with given ID was found.</value>
+    <comment>Find</comment>
+  </data>
+  <data name="OperationRemove_Success" xml:space="preserve">
+    <value>The object with given ID was removed.</value>
+    <comment>Remove</comment>
+  </data>
+  <data name="OperationRemove_Failure" xml:space="preserve">
+    <value>The object with given ID could not be removed.</value>
+    <comment>Remove</comment>
   </data>
 </root>

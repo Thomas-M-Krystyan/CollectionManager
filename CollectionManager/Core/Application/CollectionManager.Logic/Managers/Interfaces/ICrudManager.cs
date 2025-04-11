@@ -5,39 +5,41 @@ namespace CollectionManager.Logic.Managers.Interfaces
     /// <summary>
     /// Defines supported CRUD operations.
     /// </summary>
-    /// <typeparam name="TDto">The type of the DTO.</typeparam>
-    public interface ICrudManager<TDto>
-        where TDto : struct
+    public interface ICrudManager
     {
         /// <summary>
-        /// Creates the <typeparamref name="TDto"/> object in the data store.
+        /// Creates the <typeparamref name="TEntity"/> object in the data store.
         /// </summary>
-        /// <param name="dto">The DTO model to be used for creation.</param>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="cancellationToken">The cancellation token to abort the operation.</param>
         /// <returns>
         ///   The status of the CRUD operation.
         /// </returns>
-        public Task<CrudResult> CreateAsync(TDto dto, CancellationToken cancellationToken);
+        public Task<CrudResult> CreateAsync<TEntity>(TEntity dto, CancellationToken cancellationToken)
+            where TEntity : class;
 
         /// <summary>
         /// Removes the object from the data store based on the given ID.
         /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="id">The ID of the object to be removed.</param>
         /// <param name="cancellationToken">The cancellation token to abort the operation.</param>
         /// <returns>
         ///   The status of the CRUD operation.
         /// </returns>
-        public Task<CrudResult> RemoveAsync(ulong id, CancellationToken cancellationToken);
+        public Task<CrudResult> RemoveAsync<TEntity>(ulong id, CancellationToken cancellationToken)
+            where TEntity : class;
 
         /// <summary>
-        /// Updates the <typeparamref name="TDto"/> object from the data store based on the given ID.
+        /// Updates the <typeparamref name="TEntity"/> object from the data store based on the given ID.
         /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="id">The ID of the object to be updated.</param>
-        /// <param name="dto">The DTO model to be used for update.</param>
         /// <param name="cancellationToken">The cancellation token to abort the operation.</param>
         /// <returns>
         ///   The status of the CRUD operation.
         /// </returns>
-        public Task<CrudResult> UpdateAsync(ulong id, TDto dto, CancellationToken cancellationToken);
+        public Task<CrudResult> UpdateAsync<TEntity>(ulong id, TEntity entity, CancellationToken cancellationToken)
+            where TEntity : class;
     }
 }

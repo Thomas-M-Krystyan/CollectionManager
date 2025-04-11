@@ -61,83 +61,47 @@ namespace CollectionManager.Logic.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object of type &apos;{0}&apos; and name &apos;{1}&apos; could not be created. Reason: {2}..
+        ///   Looks up a localized string similar to The operation failed: .
         /// </summary>
-        internal static string CreateOperation_Failure {
+        internal static string CrudStatus_Failure {
             get {
-                return ResourceManager.GetString("CreateOperation_Failure", resourceCulture);
+                return ResourceManager.GetString("CrudStatus_Failure", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object of type &apos;{0}&apos; and name &apos;{1}&apos; was created successfully with ID &apos;{2}&apos;..
+        ///   Looks up a localized string similar to The operation succeeded: .
         /// </summary>
-        internal static string CreateOperation_Success {
+        internal static string CrudStatus_Success {
             get {
-                return ResourceManager.GetString("CreateOperation_Success", resourceCulture);
+                return ResourceManager.GetString("CrudStatus_Success", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object(s) matching criteria &apos;{0}&apos; could not be displayed. Reason: {1}..
+        ///   Looks up a localized string similar to The object with ID: &apos;.
         /// </summary>
-        internal static string DisplayOperation_Failure {
+        internal static string ObjectId {
             get {
-                return ResourceManager.GetString("DisplayOperation_Failure", resourceCulture);
+                return ResourceManager.GetString("ObjectId", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object(s) matching criteria &apos;{0}&apos; was/were displayed successfully..
+        ///   Looks up a localized string similar to &apos; could not be removed. Reason: .
         /// </summary>
-        internal static string DisplayOperation_Success {
+        internal static string OperationRemove_Failure {
             get {
-                return ResourceManager.GetString("DisplayOperation_Success", resourceCulture);
+                return ResourceManager.GetString("OperationRemove_Failure", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object with ID &apos;{0}&apos; could not be removed. Reason: {1}..
+        ///   Looks up a localized string similar to &apos; was removed successfully..
         /// </summary>
-        internal static string RemoveOperation_Failure {
+        internal static string OperationRemove_Success {
             get {
-                return ResourceManager.GetString("RemoveOperation_Failure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The object with the given ID could not be found..
-        /// </summary>
-        internal static string RemoveOperation_Failure_NotFound {
-            get {
-                return ResourceManager.GetString("RemoveOperation_Failure_NotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The object with ID &apos;{0}&apos; was removed successfully..
-        /// </summary>
-        internal static string RemoveOperation_Success {
-            get {
-                return ResourceManager.GetString("RemoveOperation_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The object with ID &apos;{0}&apos; could not be updated. Reason: {1}..
-        /// </summary>
-        internal static string UpdateOperation_Failure {
-            get {
-                return ResourceManager.GetString("UpdateOperation_Failure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The object with ID &apos;{0}&apos; was updated successfully..
-        /// </summary>
-        internal static string UpdateOperation_Success {
-            get {
-                return ResourceManager.GetString("UpdateOperation_Success", resourceCulture);
+                return ResourceManager.GetString("OperationRemove_Success", resourceCulture);
             }
         }
     }

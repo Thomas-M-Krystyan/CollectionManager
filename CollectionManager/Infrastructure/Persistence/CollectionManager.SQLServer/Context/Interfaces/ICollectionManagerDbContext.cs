@@ -1,6 +1,4 @@
-﻿using CollectionManager.SQLServer.Entities;
-using CollectionManager.SQLServer.Results;
-using Microsoft.EntityFrameworkCore;
+﻿using CollectionManager.SQLServer.Results;
 
 namespace CollectionManager.SQLServer.Context.Interfaces
 {
@@ -9,14 +7,31 @@ namespace CollectionManager.SQLServer.Context.Interfaces
     /// </summary>
     public interface ICollectionManagerDbContext
     {
-        #region Tables
-        public DbSet<ImageEntity> Images { get; set; }
-
-        public DbSet<ItemEntity> Items { get; set; }
-        #endregion
-
         #region Operations
-        /// <inheritdoc cref="DbContext.SaveChangesAsync(CancellationToken)"/>
+        /// <summary>
+        /// Finds an entity by its primary key.
+        /// </summary>
+        /// <returns>
+        ///   The status of the database operation.
+        /// </returns>
+        public Task<DatabaseResult<TEntity>> FindAsync<TEntity>(ulong id, CancellationToken cancellationToken)
+            where TEntity : class;
+
+        /// <summary>
+        /// Removes the entity from the database.
+        /// </summary>
+        /// <returns>
+        ///   The status of the database operation.
+        /// </returns>
+        public DatabaseResult Remove<TEntity>(TEntity entity)
+            where TEntity : class;
+
+        /// <summary>
+        /// Saves the changes to the database.
+        /// </summary>
+        /// <returns>
+        ///   The status of the database operation.
+        /// </returns>
         public Task<DatabaseResult> SaveChangesAsync(CancellationToken cancellationToken);
         #endregion
     }

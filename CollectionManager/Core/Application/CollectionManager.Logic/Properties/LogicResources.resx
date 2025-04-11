@@ -117,39 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateOperation_Success" xml:space="preserve">
-    <value>The object of type '{0}' and name '{1}' was created successfully with ID '{2}'.</value>
-    <comment>{0} = Type of the object; {1} = Name of the object; {2} = ID of the object</comment>
+  <data name="CrudStatus_Success" xml:space="preserve">
+    <value>The operation succeeded: </value>
+    <comment>1. Status</comment>
   </data>
-  <data name="UpdateOperation_Success" xml:space="preserve">
-    <value>The object with ID '{0}' was updated successfully.</value>
-    <comment>{0} = ID of the object</comment>
+  <data name="CrudStatus_Failure" xml:space="preserve">
+    <value>The operation failed: </value>
+    <comment>1. Status</comment>
   </data>
-  <data name="RemoveOperation_Success" xml:space="preserve">
-    <value>The object with ID '{0}' was removed successfully.</value>
-    <comment>{0} = ID of the object</comment>
+  <data name="ObjectId" xml:space="preserve">
+    <value>The object with ID: '</value>
+    <comment>2. Target</comment>
   </data>
-  <data name="DisplayOperation_Success" xml:space="preserve">
-    <value>The object(s) matching criteria '{0}' was/were displayed successfully.</value>
-    <comment>{0} = The display criteria of the object</comment>
+  <data name="OperationRemove_Success" xml:space="preserve">
+    <value>' was removed successfully.</value>
+    <comment>3. Message</comment>
   </data>
-  <data name="CreateOperation_Failure" xml:space="preserve">
-    <value>The object of type '{0}' and name '{1}' could not be created. Reason: {2}.</value>
-    <comment>{0} = Type of the object; {1} = Name of the object; {2} = Exception message</comment>
-  </data>
-  <data name="UpdateOperation_Failure" xml:space="preserve">
-    <value>The object with ID '{0}' could not be updated. Reason: {1}.</value>
-    <comment>{0} = ID of the object; {1} = Exception message</comment>
-  </data>
-  <data name="RemoveOperation_Failure" xml:space="preserve">
-    <value>The object with ID '{0}' could not be removed. Reason: {1}.</value>
-    <comment>{0} = ID of the object; {1} = Exception message</comment>
-  </data>
-  <data name="RemoveOperation_Failure_NotFound" xml:space="preserve">
-    <value>The object with the given ID could not be found.</value>
-  </data>
-  <data name="DisplayOperation_Failure" xml:space="preserve">
-    <value>The object(s) matching criteria '{0}' could not be displayed. Reason: {1}.</value>
-    <comment>{0} = The display criteria of the object; {1} = Exception message</comment>
+  <data name="OperationRemove_Failure" xml:space="preserve">
+    <value>' could not be removed. Reason: </value>
+    <comment>3. Message</comment>
   </data>
 </root>
