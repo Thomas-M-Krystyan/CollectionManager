@@ -32,6 +32,33 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
 
         #region RemoveAsync()
         [Test]
+        public async Task RemoveAsync_Found_NotRemoved_ReturnsFailure()
+        {
+            // Arrange
+            MockFind_Success(_imageEntity);
+            MockRemove_Failure(_imageEntity);
+            MockSave_Failure();
+
+            CrudManager crudManager = new(this._dbContextMock.Object);
+
+            // Act
+            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.IsSuccess, Is.False);
+                Assert.That(result.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Remove failed."));
+
+                MockFind_Verify(1);
+                MockRemove_Verify(1, _imageEntity);
+                MockSave_Verify(0);
+
+                this._dbContextMock.VerifyNoOtherCalls();
+            });
+        }
+
+        [Test]
         public async Task RemoveAsync_Found_Removed_Saved_ReturnsSuccess()
         {
             // Arrange
@@ -48,7 +75,7 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
             Assert.Multiple(() =>
             {
                 Assert.That(result.IsSuccess, Is.True);
-                Assert.That(result.Message, Is.EqualTo($"The operation succeeded: The object with ID: '{TestId}' was removed successfully."));
+                Assert.That(result.Message, Is.EqualTo($"The operation succeeded: The object with ID '{TestId}' was removed successfully."));
 
                 MockFind_Verify(1);
                 MockRemove_Verify(1, _imageEntity);
@@ -75,7 +102,7 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
             Assert.Multiple(() =>
             {
                 Assert.That(result.IsSuccess, Is.False);
-                Assert.That(result.Message, Is.EqualTo("The operation failed: The object with ID: '1' could not be removed. Reason: The saving failed. Nothing was changed."));
+                Assert.That(result.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Save failed."));
 
                 MockFind_Verify(1);
                 MockRemove_Verify(1, _imageEntity);
@@ -89,7 +116,7 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
         #region Mocks
         private void MockFind_Success(ImageEntity imageEntity)
         {
-            DatabaseResult<ImageEntity> findResult = new(true, 0, imageEntity, "The object with given ID was found.");
+            DatabaseResult<ImageEntity> findResult = new(true, 0, imageEntity, "Find succeeded.");
 
             this._dbContextMock
                 .Setup(mock => mock.FindAsync<ImageEntity>(It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
@@ -98,7 +125,16 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
 
         private void MockRemove_Success(ImageEntity imageEntity)
         {
-            DatabaseResult removeResult = new(true, 0, "The object with given ID was removed.");
+            DatabaseResult removeResult = new(true, 0, "Remove succeeded.");
+
+            this._dbContextMock
+                .Setup(mock => mock.Remove(imageEntity))
+                .Returns(removeResult);
+        }
+
+        private void MockRemove_Failure(ImageEntity imageEntity)
+        {
+            DatabaseResult removeResult = new(false, 0, "Remove failed.");
 
             this._dbContextMock
                 .Setup(mock => mock.Remove(imageEntity))
@@ -107,7 +143,7 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
 
         private void MockSave_Success()
         {
-            DatabaseResult saveResult = new(true, 1, "The saving succeeded. Database was changed.");
+            DatabaseResult saveResult = new(true, 1, "Save succeeded.");
 
             this._dbContextMock
                 .Setup(mock => mock.SaveChangesAsync(It.IsAny<CancellationToken>()))
@@ -116,7 +152,7 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
 
         private void MockSave_Failure()
         {
-            DatabaseResult saveResult = new(false, 0, "The saving failed. Nothing was changed.");
+            DatabaseResult saveResult = new(false, 0, "Save failed.");
 
             this._dbContextMock
                 .Setup(mock => mock.SaveChangesAsync(It.IsAny<CancellationToken>()))
