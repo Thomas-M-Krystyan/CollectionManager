@@ -20,7 +20,7 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
         {
             Id = TestId,
             Name = "Test image",
-            Extension = (byte)GraphicFileExtensions.Jpg,
+            Extension = (byte)Graphics.Jpg,
             Bytes = []
         };
         #endregion
