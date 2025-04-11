@@ -19,24 +19,29 @@ namespace CollectionManager.SQLServer.Entities.Collectibles
         public required string Name { get; set; }
 
         [Required]
+        [MaxLength(100)]
         [Column(Order = 2)]
-        public required byte Genre { get; set; }
+        public required string Authors { get; set; }
 
         [Required]
         [Column(Order = 3)]
-        public required byte Age { get; set; }
+        public required byte Genre { get; set; }
 
         [Required]
         [Column(Order = 4)]
-        public required DateOnly Published { get; set; }
+        public required byte Age { get; set; }
 
         [Required]
         [Column(Order = 5)]
+        public required DateOnly Published { get; set; }
+
+        [Required]
+        [Column(Order = 6)]
         public required bool IsOwned { get; set; }
 
         [Required]
         [MaxLength(500)]
-        [Column(Order = 6)]
+        [Column(Order = 7)]
         public required string Notes { get; set; }
 
         // ---------------------
@@ -44,12 +49,12 @@ namespace CollectionManager.SQLServer.Entities.Collectibles
         // ---------------------
 
         [Required]
-        [Column(Order = 7)]
+        [Column(Order = 8)]
         public required ulong ImageId { get; set; }
 
         [Required]
         [ForeignKey(nameof(ImageId))]
-        [Column(Order = 8)]
+        [Column(Order = 9)]
         public required ImageEntity Image { get; set; }
     }
 }
