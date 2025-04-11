@@ -5,12 +5,12 @@ namespace CollectionManager.Logic.Models.Results
     /// <summary>
     /// Represents status of a CRUD operation.
     /// </summary>
-    public readonly struct CrudResult(bool isSuccess, string message)
+    public readonly struct CrudResult
     {
         /// <summary>
         /// Indicator whether the CRUD operation was successful.
         /// </summary>
-        public bool IsSuccess { get; } = isSuccess;
+        public bool IsSuccess { get; }
 
         /// <summary>
         /// Indicator whether the CRUD operation was unsuccessful.
@@ -20,7 +20,16 @@ namespace CollectionManager.Logic.Models.Results
         /// <summary>
         /// The status of the CRUD operation.
         /// </summary>
-        public string Message { get; } = message;
+        public string Message { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrudResult"/> struct.
+        /// </summary>
+        private CrudResult(bool isSuccess, string message)
+        {
+            this.IsSuccess = isSuccess;
+            this.Message = message;
+        }
 
         #region Predefined results
         /// <summary>

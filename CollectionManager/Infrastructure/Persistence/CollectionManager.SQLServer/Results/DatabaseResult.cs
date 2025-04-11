@@ -3,12 +3,12 @@
     /// <summary>
     /// The standardized database operation result.
     /// </summary>
-    public readonly struct DatabaseResult(bool isSuccess, int changesCount, string message)
+    public readonly struct DatabaseResult
     {
         /// <summary>
         /// Indicator whether the database operation was successful.
         /// </summary>
-        public bool IsSuccess { get; } = isSuccess;
+        public bool IsSuccess { get; }
 
         /// <summary>
         /// Indicator whether the database operation was unsuccessful.
@@ -18,12 +18,22 @@
         /// <summary>
         /// The number of affected database rows.
         /// </summary>
-        public int ChangesCount { get; } = changesCount;
+        public int ChangesCount { get; }
 
         /// <summary>
         /// The database operation result message.
         /// </summary>
-        public string Message { get; } = message;
+        public string Message { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseResult"/> struct.
+        /// </summary>
+        private DatabaseResult(bool isSuccess, int changesCount, string message)
+        {
+            this.IsSuccess = isSuccess;
+            this.ChangesCount = changesCount;
+            this.Message = message;
+        }
 
         #region Predefined results
         /// <summary>
