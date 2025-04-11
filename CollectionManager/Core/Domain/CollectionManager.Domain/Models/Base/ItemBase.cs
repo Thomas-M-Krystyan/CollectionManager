@@ -5,7 +5,7 @@ namespace CollectionManager.Domain.Models.Base
     /// <summary>
     /// An item that can be collected.
     /// </summary>
-    public record ItemBase
+    public abstract record ItemBase
     {
         /// <summary>
         /// The unique identifier of the item.
@@ -35,5 +35,12 @@ namespace CollectionManager.Domain.Models.Base
         /// The notes of the item.
         /// </summary>
         public string Notes { get; init; } = string.Empty;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemBase"/> class.
+        /// </summary>
+        protected ItemBase()
+        {
+        }
     }
 }
