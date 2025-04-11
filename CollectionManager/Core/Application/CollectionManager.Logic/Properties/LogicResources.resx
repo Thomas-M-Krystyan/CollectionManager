@@ -145,6 +145,9 @@
     <value>The object with ID '{0}' could not be removed. Reason: {1}.</value>
     <comment>{0} = ID of the object; {1} = Exception message</comment>
   </data>
+  <data name="RemoveOperation_Failure_NotFound" xml:space="preserve">
+    <value>The object with the given ID could not be found.</value>
+  </data>
   <data name="DisplayOperation_Failure" xml:space="preserve">
     <value>The object(s) matching criteria '{0}' could not be displayed. Reason: {1}.</value>
     <comment>{0} = The display criteria of the object; {1} = Exception message</comment>

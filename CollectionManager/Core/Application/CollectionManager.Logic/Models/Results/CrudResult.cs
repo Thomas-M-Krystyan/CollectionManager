@@ -1,6 +1,4 @@
-﻿using CollectionManager.Logic.Extensions;
-
-namespace CollectionManager.Logic.Models.Results
+﻿namespace CollectionManager.Logic.Models.Results
 {
     /// <summary>
     /// Represents status of a CRUD operation.
@@ -43,12 +41,6 @@ namespace CollectionManager.Logic.Models.Results
         /// </summary>
         public static CrudResult Failure(string errorMessage)
             => new(false, errorMessage);
-
-        /// <summary>
-        /// The negative outcome of the CRUD operation.
-        /// </summary>
-        public static CrudResult Failure(Exception exception)
-            => new(false, exception.GetMessage());
         #endregion
     }
 }

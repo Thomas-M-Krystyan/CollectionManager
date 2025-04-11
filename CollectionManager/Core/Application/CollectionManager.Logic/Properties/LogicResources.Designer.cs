@@ -106,6 +106,15 @@ namespace CollectionManager.Logic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The object with the given ID could not be found..
+        /// </summary>
+        internal static string RemoveOperation_Failure_NotFound {
+            get {
+                return ResourceManager.GetString("RemoveOperation_Failure_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The object with ID &apos;{0}&apos; was removed successfully..
         /// </summary>
         internal static string RemoveOperation_Success {
