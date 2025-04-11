@@ -1,5 +1,6 @@
 ﻿using CollectionManager.SQLServer.Context.Interfaces;
 using CollectionManager.SQLServer.Entities;
+using CollectionManager.SQLServer.Entities.Collectibles;
 using CollectionManager.SQLServer.Properties;
 using CollectionManager.SQLServer.Results;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ namespace CollectionManager.SQLServer.Context
     public class CollectionManagerDbContext : DbContext, ICollectionManagerDbContext
     {
         #region Tables
-        internal virtual DbSet<ItemEntity> Items { get; set; }
+        internal virtual DbSet<ComicEntity> Comics { get; set; }
 
         internal virtual DbSet<ImageEntity> Images { get; set; }
         #endregion
