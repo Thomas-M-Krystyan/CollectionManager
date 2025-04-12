@@ -1,8 +1,8 @@
 ﻿using CollectionManager.Logic.Extensions;
 using CollectionManager.Logic.Managers.Interfaces;
-using CollectionManager.Logic.Models.Results;
+using CollectionManager.Logic.Models.Responses;
 using CollectionManager.SQLServer.Context.Interfaces;
-using CollectionManager.SQLServer.Results;
+using CollectionManager.SQLServer.Responses;
 
 namespace CollectionManager.Logic.Managers
 {
@@ -20,56 +20,56 @@ namespace CollectionManager.Logic.Managers
         }
 
         /// <inheritdoc cref="ICrudManager.CreateAsync{TEntity}(TEntity, CancellationToken)"/>
-        public async Task<CrudResult> CreateAsync<TEntity>(TEntity entity, CancellationToken cancellationToken)
+        public async Task<CrudResponse> CreateAsync<TEntity>(TEntity entity, CancellationToken cancellationToken)
             where TEntity : class
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="ICrudManager.RemoveAsync(ulong, CancellationToken)"/>
-        public async Task<CrudResult> RemoveAsync<TEntity>(ulong id, CancellationToken cancellationToken)
+        public async Task<CrudResponse> RemoveAsync<TEntity>(ulong id, CancellationToken cancellationToken)
             where TEntity : class
         {
             try
             {
                 // Find
-                DatabaseResult<TEntity> findResult = await this._dbContext.FindAsync<TEntity>(id, cancellationToken);
+                DatabaseResponse<TEntity> findResponse = await this._dbContext.FindAsync<TEntity>(id, cancellationToken);
 
-                if (findResult.IsFailure)
+                if (findResponse.IsFailure)
                 {
-                    return CrudResult.Failure(findResult.Message).WhenRemove(id);
+                    return CrudResponse.Failure(findResponse.Message).WhenRemove(id);
                 }
 
                 // Remove
-                DatabaseResult removeResult = this._dbContext.Remove(findResult.Result);
+                DatabaseResponse removeResponse = this._dbContext.Remove(findResponse.Result);
 
-                if (removeResult.IsFailure)
+                if (removeResponse.IsFailure)
                 {
-                    return CrudResult.Failure(removeResult.Message).WhenRemove(id);
+                    return CrudResponse.Failure(removeResponse.Message).WhenRemove(id);
                 }
 
                 // Save
-                DatabaseResult saveResult = await this._dbContext.SaveChangesAsync(cancellationToken);
+                DatabaseResponse saveResponse = await this._dbContext.SaveChangesAsync(cancellationToken);
 
-                return saveResult.IsSuccess
-                    ? CrudResult.Success().WhenRemove(id)
-                    : CrudResult.Failure(saveResult.Message).WhenRemove(id);
+                return saveResponse.IsSuccess
+                    ? CrudResponse.Success().WhenRemove(id)
+                    : CrudResponse.Failure(saveResponse.Message).WhenRemove(id);
             }
             catch (Exception exception)
             {
-                return CrudResult.Failure(exception.GetMessage()).WhenRemove(id);
+                return CrudResponse.Failure(exception.GetMessage()).WhenRemove(id);
             }
         }
 
         /// <inheritdoc cref="ICrudManager.UpdateAsync{TEntity}(ulong, TEntity, CancellationToken)"/>
-        public async Task<CrudResult> UpdateAsync<TEntity>(ulong id, TEntity entity, CancellationToken cancellationToken)
+        public async Task<CrudResponse> UpdateAsync<TEntity>(ulong id, TEntity entity, CancellationToken cancellationToken)
             where TEntity : class
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc cref="ICrudManager.DisplayAllAsync{TEntity}(CancellationToken)"/>
-        public async Task<CrudResult> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
+        public async Task<CrudResponse> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
             where TEntity : class
         {
             throw new NotImplementedException();

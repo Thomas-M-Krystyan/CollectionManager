@@ -1,9 +1,9 @@
 ﻿using CollectionManager.Domain.Enums.FileExtensions;
 using CollectionManager.Logic.Managers;
-using CollectionManager.Logic.Models.Results;
+using CollectionManager.Logic.Models.Responses;
 using CollectionManager.SQLServer.Context.Interfaces;
 using CollectionManager.SQLServer.Entities;
-using CollectionManager.SQLServer.Results;
+using CollectionManager.SQLServer.Responses;
 using Moq;
 
 namespace CollectionManager.Logic.Tests.Unit.Managers
@@ -42,13 +42,13 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
             CrudManager crudManager = new(this._dbContextMock.Object);
 
             // Act
-            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+            CrudResponse response = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
 
             // Assert
             Assert.Multiple(() =>
             {
-                Assert.That(result.IsSuccess, Is.False);
-                Assert.That(result.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Find failed."));
+                Assert.That(response.IsSuccess, Is.False);
+                Assert.That(response.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Find failed."));
 
                 MockFind_Verify(1);
                 MockRemove_Verify(0, _imageEntity);
@@ -69,13 +69,13 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
             CrudManager crudManager = new(this._dbContextMock.Object);
 
             // Act
-            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+            CrudResponse response = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
 
             // Assert
             Assert.Multiple(() =>
             {
-                Assert.That(result.IsSuccess, Is.False);
-                Assert.That(result.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Remove failed."));
+                Assert.That(response.IsSuccess, Is.False);
+                Assert.That(response.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Remove failed."));
 
                 MockFind_Verify(1);
                 MockRemove_Verify(1, _imageEntity);
@@ -96,13 +96,13 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
             CrudManager crudManager = new(this._dbContextMock.Object);
 
             // Act
-            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+            CrudResponse response = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
 
             // Assert
             Assert.Multiple(() =>
             {
-                Assert.That(result.IsSuccess, Is.True);
-                Assert.That(result.Message, Is.EqualTo($"The operation succeeded: The object with ID '{TestId}' was removed successfully."));
+                Assert.That(response.IsSuccess, Is.True);
+                Assert.That(response.Message, Is.EqualTo($"The operation succeeded: The object with ID '{TestId}' was removed successfully."));
 
                 MockFind_Verify(1);
                 MockRemove_Verify(1, _imageEntity);
@@ -123,13 +123,13 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
             CrudManager crudManager = new(this._dbContextMock.Object);
 
             // Act
-            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+            CrudResponse response = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
 
             // Assert
             Assert.Multiple(() =>
             {
-                Assert.That(result.IsSuccess, Is.False);
-                Assert.That(result.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Save failed."));
+                Assert.That(response.IsSuccess, Is.False);
+                Assert.That(response.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Save failed."));
 
                 MockFind_Verify(1);
                 MockRemove_Verify(1, _imageEntity);
@@ -150,13 +150,13 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
             CrudManager crudManager = new(this._dbContextMock.Object);
 
             // Act
-            CrudResult result = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
+            CrudResponse response = await crudManager.RemoveAsync<ImageEntity>(TestId, CancellationToken.None);
 
             // Assert
             Assert.Multiple(() =>
             {
-                Assert.That(result.IsSuccess, Is.False);
-                Assert.That(result.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Test exception."));
+                Assert.That(response.IsSuccess, Is.False);
+                Assert.That(response.Message, Is.EqualTo($"The operation failed: The object with ID '{TestId}' could not be removed. Reason: Test exception."));
 
                 MockFind_Verify(1);
                 MockRemove_Verify(0, _imageEntity);
@@ -170,56 +170,56 @@ namespace CollectionManager.Logic.Tests.Unit.Managers
         #region Mocks
         private void MockFind_Success(ImageEntity imageEntity)
         {
-            DatabaseResult<ImageEntity> findResult = new(true, 0, imageEntity, "Find succeeded.");
+            DatabaseResponse<ImageEntity> findResponse = new(true, 0, imageEntity, "Find succeeded.");
 
             this._dbContextMock
                 .Setup(mock => mock.FindAsync<ImageEntity>(It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(findResult);
+                .ReturnsAsync(findResponse);
         }
 
         private void MockFind_Failure(ImageEntity imageEntity)
         {
-            DatabaseResult<ImageEntity> findResult = new(false, 0, imageEntity, "Find failed.");
+            DatabaseResponse<ImageEntity> findResponse = new(false, 0, imageEntity, "Find failed.");
 
             this._dbContextMock
                 .Setup(mock => mock.FindAsync<ImageEntity>(It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(findResult);
+                .ReturnsAsync(findResponse);
         }
 
         private void MockRemove_Success(ImageEntity imageEntity)
         {
-            DatabaseResult removeResult = new(true, 0, "Remove succeeded.");
+            DatabaseResponse removeResponse = new(true, 0, "Remove succeeded.");
 
             this._dbContextMock
                 .Setup(mock => mock.Remove(imageEntity))
-                .Returns(removeResult);
+                .Returns(removeResponse);
         }
 
         private void MockRemove_Failure(ImageEntity imageEntity)
         {
-            DatabaseResult removeResult = new(false, 0, "Remove failed.");
+            DatabaseResponse removeResponse = new(false, 0, "Remove failed.");
 
             this._dbContextMock
                 .Setup(mock => mock.Remove(imageEntity))
-                .Returns(removeResult);
+                .Returns(removeResponse);
         }
 
         private void MockSave_Success()
         {
-            DatabaseResult saveResult = new(true, 1, "Save succeeded.");
+            DatabaseResponse saveResponse = new(true, 1, "Save succeeded.");
 
             this._dbContextMock
                 .Setup(mock => mock.SaveChangesAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(saveResult);
+                .ReturnsAsync(saveResponse);
         }
 
         private void MockSave_Failure()
         {
-            DatabaseResult saveResult = new(false, 0, "Save failed.");
+            DatabaseResponse saveResponse = new(false, 0, "Save failed.");
 
             this._dbContextMock
                 .Setup(mock => mock.SaveChangesAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(saveResult);
+                .ReturnsAsync(saveResponse);
         }
         #endregion
 

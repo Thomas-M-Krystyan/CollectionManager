@@ -1,4 +1,4 @@
-﻿using CollectionManager.Logic.Models.Results;
+﻿using CollectionManager.Logic.Models.Responses;
 
 namespace CollectionManager.Logic.Managers.Interfaces
 {
@@ -15,7 +15,7 @@ namespace CollectionManager.Logic.Managers.Interfaces
         /// <returns>
         ///   The response from the CRUD operation.
         /// </returns>
-        public Task<CrudResult> CreateAsync<TEntity>(TEntity entity, CancellationToken cancellationToken)
+        public Task<CrudResponse> CreateAsync<TEntity>(TEntity entity, CancellationToken cancellationToken)
             where TEntity : class;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace CollectionManager.Logic.Managers.Interfaces
         /// <returns>
         ///   The response from the CRUD operation.
         /// </returns>
-        public Task<CrudResult> RemoveAsync<TEntity>(ulong id, CancellationToken cancellationToken)
+        public Task<CrudResponse> RemoveAsync<TEntity>(ulong id, CancellationToken cancellationToken)
             where TEntity : class;
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace CollectionManager.Logic.Managers.Interfaces
         /// <returns>
         ///   The response from the CRUD operation.
         /// </returns>
-        public Task<CrudResult> UpdateAsync<TEntity>(ulong id, TEntity entity, CancellationToken cancellationToken)
+        public Task<CrudResponse> UpdateAsync<TEntity>(ulong id, TEntity entity, CancellationToken cancellationToken)
             where TEntity : class;
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace CollectionManager.Logic.Managers.Interfaces
         /// <returns>
         ///   The response from the CRUD operation.
         /// </returns>
-        public Task<CrudResult> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
+        public Task<CrudResponse> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
             where TEntity : class;
     }
 }

@@ -1,4 +1,4 @@
-﻿using CollectionManager.SQLServer.Results;
+﻿using CollectionManager.SQLServer.Responses;
 
 namespace CollectionManager.SQLServer.Context.Interfaces
 {
@@ -14,7 +14,7 @@ namespace CollectionManager.SQLServer.Context.Interfaces
         /// <returns>
         ///   The response from the database operation.
         /// </returns>
-        public Task<DatabaseResult<TEntity>> FindAsync<TEntity>(ulong id, CancellationToken cancellationToken)
+        public Task<DatabaseResponse<TEntity>> FindAsync<TEntity>(ulong id, CancellationToken cancellationToken)
             where TEntity : class;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace CollectionManager.SQLServer.Context.Interfaces
         /// <returns>
         ///   The response from the database operation.
         /// </returns>
-        public DatabaseResult Remove<TEntity>(TEntity entity)
+        public DatabaseResponse Remove<TEntity>(TEntity entity)
             where TEntity : class;
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace CollectionManager.SQLServer.Context.Interfaces
         /// <returns>
         ///   The response from the database operation.
         /// </returns>
-        public Task<DatabaseResult<IEnumerable<TEntity>>> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
+        public Task<DatabaseResponse<IEnumerable<TEntity>>> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
             where TEntity : class;
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace CollectionManager.SQLServer.Context.Interfaces
         /// <returns>
         ///   The response from the database operation.
         /// </returns>
-        public Task<DatabaseResult> SaveChangesAsync(CancellationToken cancellationToken);
+        public Task<DatabaseResponse> SaveChangesAsync(CancellationToken cancellationToken);
         #endregion
     }
 }

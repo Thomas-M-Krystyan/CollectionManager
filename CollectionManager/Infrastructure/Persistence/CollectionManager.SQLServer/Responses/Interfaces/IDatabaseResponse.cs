@@ -1,9 +1,9 @@
-﻿namespace CollectionManager.SQLServer.Results.Interfaces
+﻿namespace CollectionManager.SQLServer.Responses.Interfaces
 {
     /// <summary>
     /// The standardized database operation result.
     /// </summary>
-    internal interface IDatabaseResult
+    internal interface IDatabaseResponse
     {
         /// <summary>
         /// Indicator whether the database operation was successful.

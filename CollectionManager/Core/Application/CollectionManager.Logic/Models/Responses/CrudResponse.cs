@@ -1,11 +1,11 @@
 ﻿using CollectionManager.Logic.Properties;
 
-namespace CollectionManager.Logic.Models.Results
+namespace CollectionManager.Logic.Models.Responses
 {
     /// <summary>
     /// Represents status of a CRUD operation.
     /// </summary>
-    public readonly struct CrudResult
+    public readonly struct CrudResponse
     {
         /// <summary>
         /// Indicator whether the CRUD operation was successful.
@@ -23,15 +23,15 @@ namespace CollectionManager.Logic.Models.Results
         public string Message { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CrudResult"/> struct.
+        /// Initializes a new instance of the <see cref="CrudResponse"/> struct.
         /// </summary>
-        private CrudResult(bool isSuccess, string message)
+        private CrudResponse(bool isSuccess, string message)
         {
             this.IsSuccess = isSuccess;
             this.Message = message;
         }
 
-        #region Predefined results
+        #region Predefined responses
         /// <summary>
         /// The positive outcome of the CRUD operation.
         /// </summary>
@@ -64,7 +64,7 @@ namespace CollectionManager.Logic.Models.Results
             /// <summary>
             /// The result of removing operation.
             /// </summary>
-            public CrudResult WhenRemove(ulong id)
+            public CrudResponse WhenRemove(ulong id)
             {
                 ReadOnlySpan<char> preOperation = LogicResources.ObjectId.AsSpan();
                 ReadOnlySpan<char> textId = id.ToString().AsSpan();
@@ -75,7 +75,7 @@ namespace CollectionManager.Logic.Models.Results
 
                 if (this._isSuccess)
                 {
-                    return new CrudResult(
+                    return new CrudResponse(
                         this._isSuccess,
                         string.Concat(this._status, preOperation, textId, postOperation));
                 }
@@ -86,7 +86,7 @@ namespace CollectionManager.Logic.Models.Results
                     postOperation.CopyTo(errorPostOperation);
                     this._errorMessage.CopyTo(errorPostOperation[postOperation.Length..]);
 
-                    return new CrudResult(
+                    return new CrudResponse(
                         this._isSuccess,
                         string.Concat(this._status, preOperation, textId, errorPostOperation));
                 }
