@@ -1,32 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using CollectionManager.SQLServer.Context;
+﻿using CollectionManager.SQLServer.Context;
 using CollectionManager.SQLServer.Entities.Collectibles;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CollectionManager.Web.Controllers
 {
-    public class ComicsController : Controller
+    /// <summary>
+    /// MVC controller for CRUD operations on <see cref="ComicEntity"/>.
+    /// </summary>
+    public sealed class ComicsController : Controller
     {
         private readonly CollectionManagerDbContext _context;
 
-        public ComicsController(CollectionManagerDbContext context)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComicsController"/> class.
+        /// </summary>
+        public ComicsController(CollectionManagerDbContext context)  // TODO: Use interface
         {
-            _context = context;
+            this._context = context;
         }
 
         // GET: Comics
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index()  // TODO: Replace with a service
         {
             return View(await _context.Comics.ToListAsync());
         }
 
         // GET: Comics/Details/5
-        public async Task<IActionResult> Details(ulong? id)
+        public async Task<IActionResult> Details(ulong? id)  // TODO: Replace with a service
         {
             if (id == null)
             {
@@ -54,7 +55,7 @@ namespace CollectionManager.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Series,Title,Volume,Issues,Published,IsOwned,Notes")] ComicEntity comicEntity)
+        public async Task<IActionResult> Create([Bind("Id,Series,Title,Volume,Issues,Published,IsOwned,Notes")] ComicEntity comicEntity)  // TODO: Replace with a service
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +67,7 @@ namespace CollectionManager.Web.Controllers
         }
 
         // GET: Comics/Edit/5
-        public async Task<IActionResult> Edit(ulong? id)
+        public async Task<IActionResult> Edit(ulong? id)  // TODO: Replace with a service
         {
             if (id == null)
             {
@@ -86,7 +87,7 @@ namespace CollectionManager.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Series,Title,Volume,Issues,Published,IsOwned,Notes")] ComicEntity comicEntity)
+        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Series,Title,Volume,Issues,Published,IsOwned,Notes")] ComicEntity comicEntity)  // TODO: Replace with a service
         {
             if (id != comicEntity.Id)
             {
@@ -117,7 +118,7 @@ namespace CollectionManager.Web.Controllers
         }
 
         // GET: Comics/Delete/5
-        public async Task<IActionResult> Delete(ulong? id)
+        public async Task<IActionResult> Delete(ulong? id)  // TODO: Replace with a service
         {
             if (id == null)
             {
@@ -137,7 +138,7 @@ namespace CollectionManager.Web.Controllers
         // POST: Comics/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(ulong id)
+        public async Task<IActionResult> DeleteConfirmed(ulong id)  // TODO: Replace with a service
         {
             var comicEntity = await _context.Comics.FindAsync(id);
             if (comicEntity != null)
@@ -149,7 +150,7 @@ namespace CollectionManager.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ComicEntityExists(ulong id)
+        private bool ComicEntityExists(ulong id)  // TODO: Replace with a service
         {
             return _context.Comics.Any(e => e.Id == id);
         }
