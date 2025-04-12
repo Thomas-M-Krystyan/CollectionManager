@@ -13,9 +13,9 @@ namespace CollectionManager.SQLServer.Context
     public class CollectionManagerDbContext : DbContext, ICollectionManagerDbContext
     {
         #region Tables
-        internal virtual DbSet<ComicEntity> Comics { get; set; }
+        public virtual DbSet<ComicEntity> Comics { get; set; }
 
-        internal virtual DbSet<ImageEntity> Images { get; set; }
+        public virtual DbSet<ImageEntity> Images { get; set; }
         #endregion
 
         /// <summary>
