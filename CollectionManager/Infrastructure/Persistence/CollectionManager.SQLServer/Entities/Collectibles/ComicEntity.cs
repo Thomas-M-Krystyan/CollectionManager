@@ -18,7 +18,7 @@ namespace CollectionManager.SQLServer.Entities.Collectibles
         public required string Series { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(50)]
         public required string Title { get; set; }
 
         [Required]
