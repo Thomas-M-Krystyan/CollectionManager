@@ -13,9 +13,9 @@ namespace CollectionManager.Logic.Managers.Interfaces
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="cancellationToken">The cancellation token to abort the operation.</param>
         /// <returns>
-        ///   The status of the CRUD operation.
+        ///   The response from the CRUD operation.
         /// </returns>
-        public Task<CrudResult> CreateAsync<TEntity>(TEntity dto, CancellationToken cancellationToken)
+        public Task<CrudResult> CreateAsync<TEntity>(TEntity entity, CancellationToken cancellationToken)
             where TEntity : class;
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace CollectionManager.Logic.Managers.Interfaces
         /// <param name="id">The ID of the object to be removed.</param>
         /// <param name="cancellationToken">The cancellation token to abort the operation.</param>
         /// <returns>
-        ///   The status of the CRUD operation.
+        ///   The response from the CRUD operation.
         /// </returns>
         public Task<CrudResult> RemoveAsync<TEntity>(ulong id, CancellationToken cancellationToken)
             where TEntity : class;
@@ -37,9 +37,20 @@ namespace CollectionManager.Logic.Managers.Interfaces
         /// <param name="id">The ID of the object to be updated.</param>
         /// <param name="cancellationToken">The cancellation token to abort the operation.</param>
         /// <returns>
-        ///   The status of the CRUD operation.
+        ///   The response from the CRUD operation.
         /// </returns>
         public Task<CrudResult> UpdateAsync<TEntity>(ulong id, TEntity entity, CancellationToken cancellationToken)
+            where TEntity : class;
+
+        /// <summary>
+        /// Displays all <typeparamref name="TEntity"/> objects from the data store.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="cancellationToken">The cancellation token to abort the operation.</param>
+        /// <returns>
+        ///   The response from the CRUD operation.
+        /// </returns>
+        public Task<CrudResult> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
             where TEntity : class;
     }
 }
