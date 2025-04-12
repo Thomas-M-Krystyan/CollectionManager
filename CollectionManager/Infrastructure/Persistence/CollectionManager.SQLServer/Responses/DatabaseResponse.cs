@@ -105,7 +105,13 @@ namespace CollectionManager.SQLServer.Responses
         /// The negative outcome of the database operation.
         /// </summary>
         internal static DatabaseResponse<TResult> Failure(string message)
-            => new(false, 0, null, message);
+            => new(false, 0, default, message);
+
+        /// <summary>
+        /// The negative outcome of the database operation.
+        /// </summary>
+        internal static DatabaseResponse<TResult> Failure(TResult result, string message)
+            => new(false, 0, result, message);
         #endregion
     }
 }

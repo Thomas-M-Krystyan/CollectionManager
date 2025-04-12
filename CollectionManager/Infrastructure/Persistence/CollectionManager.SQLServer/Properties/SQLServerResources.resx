@@ -122,7 +122,7 @@
     <comment>SaveChanges</comment>
   </data>
   <data name="OperationSaveChanges_Failure" xml:space="preserve">
-    <value>The saving operation failed (constrains, concurrency, context, configuration). Nothing was changed.</value>
+    <value>The saving operation failed. Nothing was changed.</value>
     <comment>SaveChanges</comment>
   </data>
   <data name="OperationFind_Failure" xml:space="preserve">
@@ -138,7 +138,15 @@
     <comment>Remove</comment>
   </data>
   <data name="OperationRemove_Failure" xml:space="preserve">
-    <value>The removing operation failed (constrains, state, concurrency, configuration).</value>
+    <value>The removing operation failed.</value>
     <comment>Remove</comment>
+  </data>
+  <data name="OperationGetAll_Success" xml:space="preserve">
+    <value>The fetching of all specified entities failed.</value>
+    <comment>GetAll</comment>
+  </data>
+  <data name="OperationGetAll_Failure" xml:space="preserve">
+    <value>The fetching of all specified entities succeeded.</value>
+    <comment>GetAll</comment>
   </data>
 </root>

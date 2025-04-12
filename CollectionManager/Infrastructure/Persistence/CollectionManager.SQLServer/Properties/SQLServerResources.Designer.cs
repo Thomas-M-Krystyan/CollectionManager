@@ -79,7 +79,25 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The removing operation failed (constrains, state, concurrency, configuration)..
+        ///   Looks up a localized string similar to The fetching of all specified entities succeeded..
+        /// </summary>
+        internal static string OperationGetAll_Failure {
+            get {
+                return ResourceManager.GetString("OperationGetAll_Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The fetching of all specified entities failed..
+        /// </summary>
+        internal static string OperationGetAll_Success {
+            get {
+                return ResourceManager.GetString("OperationGetAll_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The removing operation failed..
         /// </summary>
         internal static string OperationRemove_Failure {
             get {
@@ -97,7 +115,7 @@ namespace CollectionManager.SQLServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The saving operation failed (constrains, concurrency, context, configuration). Nothing was changed..
+        ///   Looks up a localized string similar to The saving operation failed. Nothing was changed..
         /// </summary>
         internal static string OperationSaveChanges_Failure {
             get {

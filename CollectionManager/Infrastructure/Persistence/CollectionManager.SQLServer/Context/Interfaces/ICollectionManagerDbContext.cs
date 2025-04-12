@@ -27,12 +27,12 @@ namespace CollectionManager.SQLServer.Context.Interfaces
             where TEntity : class;
 
         /// <summary>
-        /// Removes the entity from the database.
+        /// Gets all the specified <typeparamref name="TEntity"/>s from the database.
         /// </summary>
         /// <returns>
         ///   The response from the database operation.
         /// </returns>
-        public Task<DatabaseResponse<IEnumerable<TEntity>>> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
+        public Task<DatabaseResponse<TEntity[]>> GetAllAsync<TEntity>(CancellationToken cancellationToken)
             where TEntity : class;
 
         /// <summary>

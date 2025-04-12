@@ -57,6 +57,24 @@ namespace CollectionManager.SQLServer.Context
                 : DatabaseResponse.Failure(SQLServerResources.OperationRemove_Failure);
         }
 
+        /// <inheritdoc cref="ICollectionManagerDbContext.GetAllAsync{TEntity}(CancellationToken)"/>
+        public async Task<DatabaseResponse<TEntity[]>> GetAllAsync<TEntity>(CancellationToken cancellationToken)
+            where TEntity : class
+        {
+            try
+            {
+                TEntity[] entities = await Set<TEntity>().AsNoTracking().ToArrayAsync(cancellationToken);
+
+                return entities.Length != 0
+                    ? DatabaseResponse<TEntity[]>.Success(entities, SQLServerResources.OperationGetAll_Success)
+                    : DatabaseResponse<TEntity[]>.Failure([], SQLServerResources.OperationGetAll_Failure);
+            }
+            catch (Exception exception)
+            {
+                return DatabaseResponse<TEntity[]>.Failure([], exception.Message);
+            }
+        }
+
         /// <inheritdoc cref="ICollectionManagerDbContext.SaveChangesAsync(CancellationToken)"/>
         async Task<DatabaseResponse> ICollectionManagerDbContext.SaveChangesAsync(CancellationToken cancellationToken)
         {
