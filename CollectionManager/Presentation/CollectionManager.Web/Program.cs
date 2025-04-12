@@ -32,9 +32,11 @@ namespace CollectionManager.Web
                 ?? throw new ArgumentException($"Specified database connection string cannot be found");
 
             // Register SQL Server database
-            builder.Services.AddDbContext<ICollectionManagerDbContext, CollectionManagerDbContext>(options
+            builder.Services.AddDbContext<CollectionManagerDbContext>(options
                 => options.UseSqlServer(connectionString, optionsBuilder
                 => optionsBuilder.MigrationsAssembly("CollectionManager.SQLServer")));
+
+            builder.Services.AddScoped<ICollectionManagerDbContext, CollectionManagerDbContext>();
             #endregion
 
             #region ASP.NET MVC
