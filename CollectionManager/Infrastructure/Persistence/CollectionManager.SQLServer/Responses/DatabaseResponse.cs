@@ -79,7 +79,7 @@ namespace CollectionManager.SQLServer.Responses
         public int ChangesCount { get; }
 
         /// <summary>
-        /// The result attached to the response.
+        /// The result attached to the database response.
         /// </summary>
         public TResult? Result { get; }
 
