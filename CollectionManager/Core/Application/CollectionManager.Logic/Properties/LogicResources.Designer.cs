@@ -79,16 +79,25 @@ namespace CollectionManager.Logic.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object with ID &apos;.
+        ///   Looks up a localized string similar to No objects of type &apos;{0}&apos; could be retrieved. Reason: {1}.
         /// </summary>
-        internal static string ObjectId {
+        internal static string OperationGetAll_Failure {
             get {
-                return ResourceManager.GetString("ObjectId", resourceCulture);
+                return ResourceManager.GetString("OperationGetAll_Failure", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos; could not be removed. Reason: .
+        ///   Looks up a localized string similar to All objects of type &apos;{0}&apos; were retrieved successfully..
+        /// </summary>
+        internal static string OperationGetAll_Success {
+            get {
+                return ResourceManager.GetString("OperationGetAll_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The object with ID &apos;{0}&apos; could not be removed. Reason: {1}.
         /// </summary>
         internal static string OperationRemove_Failure {
             get {
@@ -97,7 +106,7 @@ namespace CollectionManager.Logic.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos; was removed successfully..
+        ///   Looks up a localized string similar to The object with ID &apos;{0}&apos; was removed successfully..
         /// </summary>
         internal static string OperationRemove_Success {
             get {

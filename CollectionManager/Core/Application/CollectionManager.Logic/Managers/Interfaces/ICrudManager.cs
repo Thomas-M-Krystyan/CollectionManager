@@ -43,14 +43,14 @@ namespace CollectionManager.Logic.Managers.Interfaces
             where TEntity : class;
 
         /// <summary>
-        /// Displays all <typeparamref name="TEntity"/> objects from the data store.
+        /// Gets all the specified <typeparamref name="TEntity"/>s from the database.
         /// </summary>
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <param name="cancellationToken">The cancellation token to abort the operation.</param>
         /// <returns>
         ///   The response from the CRUD operation.
         /// </returns>
-        public Task<CrudResponse> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
+        public Task<CrudResponse<TEntity[]>> GetAllAsync<TEntity>(CancellationToken cancellationToken)
             where TEntity : class;
     }
 }

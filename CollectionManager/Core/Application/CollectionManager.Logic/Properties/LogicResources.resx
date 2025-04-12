@@ -119,22 +119,24 @@
   </resheader>
   <data name="CrudStatus_Success" xml:space="preserve">
     <value>The operation succeeded: </value>
-    <comment>1. Status</comment>
   </data>
   <data name="CrudStatus_Failure" xml:space="preserve">
     <value>The operation failed: </value>
-    <comment>1. Status</comment>
-  </data>
-  <data name="ObjectId" xml:space="preserve">
-    <value>The object with ID '</value>
-    <comment>2. Target</comment>
   </data>
   <data name="OperationRemove_Success" xml:space="preserve">
-    <value>' was removed successfully.</value>
-    <comment>3. Message</comment>
+    <value>The object with ID '{0}' was removed successfully.</value>
+    <comment>{0} = Object id</comment>
   </data>
   <data name="OperationRemove_Failure" xml:space="preserve">
-    <value>' could not be removed. Reason: </value>
-    <comment>3. Message</comment>
+    <value>The object with ID '{0}' could not be removed. Reason: {1}</value>
+    <comment>{0} = Object id; {1} = Error message; NOTE: Do not put dot at the end</comment>
+  </data>
+  <data name="OperationGetAll_Success" xml:space="preserve">
+    <value>All objects of type '{0}' were retrieved successfully.</value>
+    <comment>{0} = Object type</comment>
+  </data>
+  <data name="OperationGetAll_Failure" xml:space="preserve">
+    <value>No objects of type '{0}' could be retrieved. Reason: {1}</value>
+    <comment>{0} = Object type; {1} = Error message; NOTE: Do not put dot at the end</comment>
   </data>
 </root>

@@ -68,11 +68,22 @@ namespace CollectionManager.Logic.Managers
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc cref="ICrudManager.DisplayAllAsync{TEntity}(CancellationToken)"/>
-        public async Task<CrudResponse> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
+        /// <inheritdoc cref="ICrudManager.GetAllAsync{TEntity}(CancellationToken)"/>
+        public async Task<CrudResponse<TEntity[]>> GetAllAsync<TEntity>(CancellationToken cancellationToken)
             where TEntity : class
         {
-            throw new NotImplementedException();
+            try
+            {
+                DatabaseResponse<TEntity[]> getResponse = await this._dbContext.GetAllAsync<TEntity>(cancellationToken);
+
+                return getResponse.IsSuccess
+                    ? CrudResponse<TEntity[]>.Success(getResponse.Result!).WhenGetAll<TEntity>()
+                    : CrudResponse<TEntity[]>.Failure([], getResponse.Message).WhenGetAll<TEntity>();
+            }
+            catch (Exception exception)
+            {
+                return CrudResponse<TEntity[]>.Failure([], exception.GetMessage()).WhenGetAll<TEntity>();
+            }
         }
     }
 }
