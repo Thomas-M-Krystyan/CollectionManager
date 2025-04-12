@@ -41,7 +41,7 @@ namespace CollectionManager.Logic.Managers
                 }
 
                 // Remove
-                DatabaseResult removeResult = this._dbContext.Remove(findResult.Entity);
+                DatabaseResult removeResult = this._dbContext.Remove(findResult.Result);
 
                 if (removeResult.IsFailure)
                 {
@@ -63,6 +63,13 @@ namespace CollectionManager.Logic.Managers
 
         /// <inheritdoc cref="ICrudManager.UpdateAsync{TEntity}(ulong, TEntity, CancellationToken)"/>
         public async Task<CrudResult> UpdateAsync<TEntity>(ulong id, TEntity entity, CancellationToken cancellationToken)
+            where TEntity : class
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc cref="ICrudManager.DisplayAllAsync{TEntity}(CancellationToken)"/>
+        public async Task<CrudResult> DisplayAllAsync<TEntity>(CancellationToken cancellationToken)
             where TEntity : class
         {
             throw new NotImplementedException();
