@@ -4,6 +4,7 @@ using CollectionManager.SQLServer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CollectionManager.SQLServer.Migrations
 {
     [DbContext(typeof(CollectionManagerDbContext))]
-    partial class CollectionManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250412180457_ComicEntity_TitleColumn_LargerMaxLength")]
+    partial class ComicEntity_TitleColumn_LargerMaxLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
