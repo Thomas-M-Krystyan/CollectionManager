@@ -1,4 +1,4 @@
-﻿using CollectionManager.SQLServer.Responses.Interfaces;
+using CollectionManager.SQLServer.Responses.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 
 namespace CollectionManager.SQLServer.Responses
