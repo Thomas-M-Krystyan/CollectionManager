@@ -20,6 +20,7 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- Visibility -->
   <ItemGroup>
     <InternalsVisibleTo Include="CollectionManager.Logic.Tests.Unit" />
   </ItemGroup>
