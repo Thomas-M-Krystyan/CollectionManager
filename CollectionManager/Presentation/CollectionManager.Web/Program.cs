@@ -49,7 +49,7 @@ namespace CollectionManager.Web
 
         private static WebApplicationBuilder RegisterAppServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddSingleton<ICrudManager, CrudManager>();
+            builder.Services.AddScoped<ICrudManager, CrudManager>();
 
             return builder;
         }
