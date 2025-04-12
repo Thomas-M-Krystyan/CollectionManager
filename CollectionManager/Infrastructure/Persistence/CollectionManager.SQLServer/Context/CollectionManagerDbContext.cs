@@ -1,5 +1,4 @@
 ﻿using CollectionManager.SQLServer.Context.Interfaces;
-using CollectionManager.SQLServer.Entities;
 using CollectionManager.SQLServer.Entities.Collectibles;
 using CollectionManager.SQLServer.Properties;
 using CollectionManager.SQLServer.Responses;
@@ -14,8 +13,6 @@ namespace CollectionManager.SQLServer.Context
     {
         #region Tables
         public virtual DbSet<ComicEntity> Comics { get; set; }
-
-        public virtual DbSet<ImageEntity> Images { get; set; }
         #endregion
 
         /// <summary>

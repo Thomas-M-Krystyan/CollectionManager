@@ -11,51 +11,31 @@ namespace CollectionManager.SQLServer.Entities.Collectibles
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(Order = 0)]
         public required ulong Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        [Column(Order = 1)]
-        public required string Name { get; set; }
+        [MaxLength(20)]
+        public required string Series { get; set; }
 
         [Required]
-        [MaxLength(100)]
-        [Column(Order = 2)]
-        public required string Authors { get; set; }
+        [MaxLength(30)]
+        public required string Title { get; set; }
 
         [Required]
-        [Column(Order = 3)]
-        public required byte Genre { get; set; }
+        public required byte Volume { get; set; }
 
         [Required]
-        [Column(Order = 4)]
-        public required byte Age { get; set; }
+        [MaxLength(7)]  // Example: "1-5"
+        public required string Issues { get; set; }
 
         [Required]
-        [Column(Order = 5)]
         public required DateOnly Published { get; set; }
 
         [Required]
-        [Column(Order = 6)]
         public required bool IsOwned { get; set; }
 
         [Required]
         [MaxLength(500)]
-        [Column(Order = 7)]
         public required string Notes { get; set; }
-
-        // ---------------------
-        // Navigation properties
-        // ---------------------
-
-        [Required]
-        [Column(Order = 8)]
-        public required ulong ImageId { get; set; }
-
-        [Required]
-        [ForeignKey(nameof(ImageId))]
-        [Column(Order = 9)]
-        public required ImageEntity Image { get; set; }
     }
 }

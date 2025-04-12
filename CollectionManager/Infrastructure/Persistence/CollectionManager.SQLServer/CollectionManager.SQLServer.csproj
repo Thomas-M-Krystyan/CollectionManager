@@ -39,5 +39,8 @@
       <LastGenOutput>SQLServerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 
 </Project>
