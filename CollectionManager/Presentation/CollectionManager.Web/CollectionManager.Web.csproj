@@ -37,4 +37,9 @@
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
+  <!-- TypeScript files -->
+  <ItemGroup>
+    <TypeScriptCompile Include="TypeScript\Validation\submitValidation.ts" />
+  </ItemGroup>
+
 </Project>
