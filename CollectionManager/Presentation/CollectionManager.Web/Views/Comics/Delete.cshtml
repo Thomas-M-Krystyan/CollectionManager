@@ -11,6 +11,7 @@
     <h4>ComicEntity</h4>
     <hr />
     <dl class="row">
+        @* Model properties *@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Series)
         </dt>
@@ -54,7 +55,8 @@
             @Html.DisplayFor(model => model.Notes)
         </dd>
     </dl>
-    
+
+    @* Submit button *@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
