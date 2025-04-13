@@ -51,17 +51,10 @@
                 <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
 
-            @* Submit validation *@
-            <div class="form-group">
-                <label class="control-label">Enter an even number</label>
-                <input class="form-control" id="number-check" />
-                <div id="number-check-message"></div>
-            </div>
-            
-            @* Submit button *@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" disabled />
-            </div>
+            @* Submit button + validation *@
+            @{
+                await Html.RenderPartialAsync("_SubmitValidationPartial");
+            }
         </form>
     </div>
 </div>
@@ -73,5 +66,7 @@
 @section Scripts {
     <script src="~/js/submitValidation.js"></script>
 
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
