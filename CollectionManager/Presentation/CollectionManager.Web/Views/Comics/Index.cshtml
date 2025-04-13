@@ -1,4 +1,6 @@
-﻿@model IEnumerable<CollectionManager.SQLServer.Entities.Collectibles.ComicEntity>
+﻿@using CollectionManager.SQLServer.Entities.Collectibles
+
+@model IEnumerable<ComicEntity>
 
 @{
     ViewData["Title"] = "Index";
@@ -37,35 +39,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (ComicEntity comic in Model)
+        {
         <tr>
+            @* Model properties *@
             <td>
-                @Html.DisplayFor(modelItem => item.Series)
+                @Html.DisplayFor(modelItem => comic.Series)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => comic.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Volume)
+                @Html.DisplayFor(modelItem => comic.Volume)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Issues)
+                @Html.DisplayFor(modelItem => comic.Issues)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Published)
+                @Html.DisplayFor(modelItem => comic.Published)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsOwned)
+                @Html.DisplayFor(modelItem => comic.IsOwned)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Notes)
+                @Html.DisplayFor(modelItem => comic.Notes)
             </td>
+
+            @* Operations *@
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@comic.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@comic.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@comic.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

@@ -1,4 +1,6 @@
-﻿@model CollectionManager.SQLServer.Entities.Collectibles.ComicEntity
+﻿@using CollectionManager.SQLServer.Entities.Collectibles
+
+@model ComicEntity
 
 @{
     ViewData["Title"] = "Create";
@@ -59,11 +61,13 @@
     </div>
 </div>
 
+@* Operations *@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
+@section Scripts
+{
     <script src="~/js/submitValidation.js"></script>
 
     @{
