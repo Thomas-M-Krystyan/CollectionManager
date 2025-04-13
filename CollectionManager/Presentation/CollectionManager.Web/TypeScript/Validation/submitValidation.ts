@@ -7,14 +7,15 @@ const correctAnswer: string = 'Correct answer';
 const incorrectAnswer: string = 'Incorrect answer';
 
 inputEl.addEventListener('keyup', function () {
-    const number: number = parseInt(inputEl.value);
+    const inputText: number = parseInt(inputEl.value);
+
     let message: string = '';
     let disable: boolean = true;
 
-    if (isNaN(number)) {
+    if (isNaN(inputText)) {
         message = notNumber;
     }
-    else if (number % 2 === 0) {
+    else if (inputText % 2 === 0) {
         message = correctAnswer;
         disable = false;
     }

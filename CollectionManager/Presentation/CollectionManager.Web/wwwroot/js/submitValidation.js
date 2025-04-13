@@ -5,13 +5,13 @@ var notNumber = 'ERROR: Not a number';
 var correctAnswer = 'Correct answer';
 var incorrectAnswer = 'Incorrect answer';
 inputEl.addEventListener('keyup', function () {
-    var number = parseInt(inputEl.value);
+    var inputText = parseInt(inputEl.value);
     var message = '';
     var disable = true;
-    if (isNaN(number)) {
+    if (isNaN(inputText)) {
         message = notNumber;
     }
-    else if (number % 2 === 0) {
+    else if (inputText % 2 === 0) {
         message = correctAnswer;
         disable = false;
     }
