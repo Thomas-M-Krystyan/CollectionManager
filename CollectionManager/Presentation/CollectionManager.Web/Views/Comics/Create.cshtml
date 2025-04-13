@@ -8,7 +8,7 @@
 
 <h1>Create</h1>
 
-<h4>ComicEntity</h4>
+<h4>Comic book / graphic novel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -53,17 +53,18 @@
                 <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
 
-            @* Submit button + validation *@
+            @* Submit validation *@
             @{
                 await Html.RenderPartialAsync("_SubmitValidationPartial");
             }
+
+            @* Operations *@
+            <div style="display: flex; gap: 5px; margin-top: 10px;">
+                <input type="submit" value="Create" class="btn btn-primary" disabled />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
         </form>
     </div>
-</div>
-
-@* Operations *@
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts
